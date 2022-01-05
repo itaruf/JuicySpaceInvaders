@@ -59,8 +59,11 @@ public class EnemySpawnerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveHorizontally();
-        MoveUfoHorizontally();
+        if (!GameStateManager.Instance.isGameOver)
+        {
+            MoveHorizontally();
+            MoveUfoHorizontally();
+        }
     }
 
     void MoveHorizontally()
