@@ -1,25 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Base")]
     public float speed = 5.0f;
     public GameObject projectile;
     public float projectileCDDuration;
     private float projectileCD;
 
+    [Header("Overheat")]
+    public Slider slider;
+    private bool isOverheated;
+    public float overHeatGain;
+    public float overHeatLoss;
+    public float overHeatMax;
+    private float overHeatValue;
+    public int overHeatSmashAmount;
+    public int overHeatSmashValue;
 
+
+    [Header("FOV")]
     public float fov = 90f;
     public float viewDistance = 50f;
     public int rayCount = 5;
     float angle = 0f;
     float angleIncrease = 0;
-
     public LayerMask layerMask;
-
     private Vector3 origin;
-
     private Mesh mesh;
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
@@ -40,16 +50,29 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         transform.position = CalculateMovements();
 
         if (projectileCD >= 0)
             projectileCD -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
             Shoot();
 
+        if(isOverheated && Input.GetKeyDown(KeyCode.A))
+        {
+            overHeatSmashValue--;
+            if(overHeatSmashValue <= 0)
+            {
+                isOverheated = false;
+                overHeatValue = 0;
+            }
+        }
+
+        //Losing heat over time
+        if(!isOverheated && overHeatValue >= 0)
+        overHeatValue -= overHeatLoss;
+
+        slider.value = overHeatValue / overHeatMax;
     }
 
     private void LateUpdate()
@@ -67,11 +90,20 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
+        if (isOverheated)
+            return;
+
         if (projectileCD <= 0)
         {
+            overHeatValue += overHeatGain;
             GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
             Destroy(lastProj, 5f);
             projectileCD = projectileCDDuration;
+        }
+        if(overHeatValue >= overHeatMax)
+        {
+            isOverheated = true;
+            overHeatSmashValue = overHeatSmashAmount;
         }
     }
 
@@ -80,7 +112,6 @@ public class Player : MonoBehaviour
         Gizmos.DrawCube(origin, Vector3.one);
 
         RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVecFromAngle(angle), viewDistance, layerMask);
-
 
     }
 
