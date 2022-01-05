@@ -23,11 +23,14 @@ public class Player : MonoBehaviour
 
 
     [Header("FOV")]
-    public float fov = 90f;
+    public GameObject FieldOfView;
+    [Range(0f,360f)] public float fov = 90f;
     public float viewDistance = 50f;
     public int rayCount = 5;
+    public float offset = 0;
     float angle = 0f;
     float angleIncrease = 0;
+    float _offset = 0;
     public LayerMask layerMask;
     private Vector3 origin;
     private Mesh mesh;
@@ -85,6 +88,9 @@ public class Player : MonoBehaviour
         Vector3 playerPos = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y);
 
         playerPos.x = Mathf.Clamp(playerPos.x, Camera.main.ViewportToWorldPoint(Vector3.zero).x + (GetComponent<BoxCollider2D>().bounds.size.x / 2), Camera.main.ViewportToWorldPoint(Vector3.one).x - (GetComponent<BoxCollider2D>().bounds.size.x / 2));
+
+        FieldOfView.gameObject.transform.position = new Vector3(0, 0, 0);
+
         return playerPos;
     }
 
@@ -111,19 +117,22 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawCube(origin, Vector3.one);
 
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVecFromAngle(angle), viewDistance, layerMask);
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVecFromAngle(angle + _offset), viewDistance, layerMask);
 
     }
 
     void FieldOfViewInit()
     {
         mesh = new Mesh();
-        fov = 90f;
-        viewDistance = 50f;
         origin = transform.position;
-        rayCount = 50;
         angle = 0;
         angleIncrease = fov / rayCount;
+
+        // On ne laisse pas le choix aux GDs lul
+        //_offset = Mathf.Rad2Deg * Mathf.Asin(1) + fov / 2;
+
+        // On leur laisse le choix...
+        _offset = offset + fov / 2;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -136,17 +145,17 @@ public class Player : MonoBehaviour
         for (int i = 0; i <= rayCount; i++)
         {
             Vector3 vertex;
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVecFromAngle(angle), viewDistance, layerMask);
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVecFromAngle(angle + _offset), viewDistance, layerMask);
             if (raycastHit2D.collider == null)
             {
-                Debug.DrawRay(origin, GetVecFromAngle(angle)* viewDistance, Color.green);
+                Debug.DrawRay(origin, GetVecFromAngle(angle + _offset) * viewDistance, Color.green);
                 // No hit
-                vertex = origin + GetVecFromAngle(angle) * viewDistance;
+                vertex = origin + GetVecFromAngle(angle + _offset) * viewDistance;
             }
             else
             {
                 // Hit object
-                Debug.DrawRay(origin, GetVecFromAngle(angle) * viewDistance, Color.red);
+                Debug.DrawRay(origin, GetVecFromAngle(angle + _offset) * viewDistance, Color.blue);
                 vertex = raycastHit2D.point;
             }
             vertices[vertexIndex] = vertex;
@@ -165,13 +174,12 @@ public class Player : MonoBehaviour
 
         }
 
-
+        
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
         meshFilter.mesh = mesh;
-
     }
 
 

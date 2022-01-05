@@ -161,6 +161,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8354977461744292561, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
   m_PrefabInstance: {fileID: 1983950724}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &620103968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 115150375312879507, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+  m_PrefabInstance: {fileID: 1654376227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &674257993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1137,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1213228091588746017, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7850685742569927632, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850685742569927632, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8469471042749034064, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1176,9 +1193,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: fov
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: offset
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: rayCount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: FieldOfView
+      value: 
+      objectReference: {fileID: 620103968}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: viewDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8469471042749034069, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034069, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8469471042749034071, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
       propertyPath: m_Enabled
@@ -1723,7 +1768,7 @@ MonoBehaviour:
   yUnit: 1
   ufoMovementSpeed: 1
   ufoMovementSpeedMultiplier: 1.25
-  aliensMovementSpeed: 4
+  aliensMovementSpeed: 0
   aliensMovementSpeedMultiplier: 1.25
   leftCollider: {fileID: 481077059}
   rightCollider: {fileID: 1054026304}
