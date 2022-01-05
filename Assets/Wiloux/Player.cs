@@ -99,7 +99,6 @@ public class Player : MonoBehaviour
         int[] triangles = new int[rayCount * 3];
 
         vertices[0] = origin;
-        Debug.Log(origin);
 
         int vertexIndex = 1;
         int triangleIndex = 0;
@@ -140,8 +139,6 @@ public class Player : MonoBehaviour
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
-        mesh.RecalculateBounds();
-        mesh.RecalculateNormals();
         meshFilter.mesh = mesh;
 
     }
