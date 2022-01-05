@@ -146,3 +146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2063145114646900972}
   health: 2
+  isSeen: 0
+  player: {fileID: 0}
+  ghostSprite: {fileID: 21300000, guid: 0799e6fa0b9e20b4b8dc81a98c021928, type: 3}
+  sprite: {fileID: 21300000, guid: 1ebe1613db4f15c46bd378d802a63643, type: 3}
+  SeenLayerMask:
+    serializedVersion: 2
+    m_Bits: 503

@@ -6,12 +6,13 @@ public class UFO : Enemy
 {
     void Start()
     {
-        
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
     }
 
 

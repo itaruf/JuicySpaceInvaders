@@ -8,8 +8,20 @@ public class Enemy : MonoBehaviour
     //public Sprite sprite;
     public SpriteRenderer spriteRenderer;
     public int health;
+
+    public bool isSeen;
+
+    public Player player;
+
+    public Sprite ghostSprite;
+    public Sprite sprite;
+
+    public LayerMask SeenLayerMask;
+
     void Start()
     {
+        //   player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        sprite = GetComponent<SpriteRenderer>().sprite;
         //spriteRenderer = GetComponent<SpriteRenderer>();
         //spriteRenderer.sprite = sprite;
     }
@@ -17,7 +29,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    protected bool CheckIfSeen(Transform target)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, target.position, SeenLayerMask);
+        if (hit != null && hit.collider.transform.name != "Player")
+        {
+            isSeen = false;
+            return false;
+        }
+        else
+        {
+            isSeen = true;
+            return true;
+        }
     }
 
     public void GetDamaged(int amount)
@@ -28,7 +55,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 
     public void SetSprite(Sprite sprite)
