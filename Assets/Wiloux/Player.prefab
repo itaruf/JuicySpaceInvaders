@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7850685742569927632}
   - component: {fileID: 1213228091588746017}
   - component: {fileID: 364225032460535623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FieldOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 8469471042749034070}
   - component: {fileID: 8469471042749034071}
   - component: {fileID: 8469471042749034068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   projectile: {fileID: 4198526051925206524, guid: 79a9b32419bdf0f439cf89b87b07064e, type: 3}
-  projectileCDDuration: 1
+  projectileCDDuration: 0.2
+  slider: {fileID: 0}
+  overHeatGain: 50
+  overHeatLoss: 5
+  overHeatMax: 200
+  overHeatSmashAmount: 3
+  overHeatSmashValue: 0
   fov: 90
   viewDistance: 50
   rayCount: 20
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
