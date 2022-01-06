@@ -14,7 +14,7 @@ public class Alien : Enemy
     void Update()
     {
 
-        SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
+     //   SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
 
     }
 
