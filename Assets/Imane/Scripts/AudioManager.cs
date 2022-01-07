@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +6,20 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public Audio[] audios;
+
+    public enum AudioAction
+    {
+        START,
+        RESTART,
+    }
+
+    [Serializable]
+    public class AudioObject
+    {
+        public Audio.AudioType type;
+        public AudioClip clip;
+    }
+
     private static AudioManager _instance;
     public static AudioManager Instance
     {
@@ -49,12 +63,7 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < listOfAudios.Count; i++)
-            if (listOfAudios[i] == null)
-            {
-                listOfAudios.RemoveAt(i);
-                i--;
-            }
+        ClearAudios();
     }
 
     /******************Pour les GameObjects ayant des audiosources*******************/
@@ -63,7 +72,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource = Array.Find(audioSources, sound => sound.clip.name == name);
 
-        // On rejoue l'audio même s'il était déjà en cours ou si aucun n'était en cours
+        // On rejoue l'audio mï¿½me s'il ï¿½tait dï¿½jï¿½ en cours ou si aucun n'ï¿½tait en cours
         if (resettable || !audioSource.isPlaying)
             audioSource.Play();
     }
@@ -78,7 +87,7 @@ public class AudioManager : MonoBehaviour
 
     public void StopAllAudios(AudioSource[] audioSources)
     {
-        foreach(AudioSource audioSource in audioSources)
+        foreach (AudioSource audioSource in audioSources)
         {
             if (audioSource.isPlaying)
                 audioSource.Stop();
@@ -86,24 +95,43 @@ public class AudioManager : MonoBehaviour
     }
 
     /***************Pour les audiosources sur l'AudioManager******************/
-
-    // Pour les audios qu'on veut redémarrer à 0 si on essaie de rejouer le même clip
-    public void PlayAudio(string name, Audio.AudioType audioType, bool resettable)
+    public void PlayAudio(string name, Audio.AudioType audioType, AudioAction audioAction, bool stopSameAudioType = true)
     {
         Audio audio = Array.Find(audios, sound => sound.clip.name == name);
         switch (audioType)
         {
+            // 1 thÃ¨me Ã  la fois
             case Audio.AudioType.BACKGROUND:
-                StopAllAudiosByAudioType(audioType);
-                audio.source.Play();
-                break;
-            case Audio.AudioType.SFX:
-                if (!resettable)
+                // START si l'audio n'Ã©tait pas en cours de lecture
+                if (audioAction == AudioAction.START) 
                 {
+                    // Stop tous le audios d'un mÃªme type sauf l'audio Ã  jouer s'il Ã©tait dÃ©jÃ  en cours de lecture
+                    StopAllAudiosByAudioType(audioType, name);
+                    if (!audio.source.isPlaying)
+                        audio.source.Play();
+                    break;
+                }
+                // RESTART si l'audio Ã©tait dÃ©jÃ  en cours de lecture
+                StopAllAudiosByAudioType(audioType);
+                    audio.source.Play();
+                break;
+
+            // Plusieurs SFX possibles Ã  la fois
+            case Audio.AudioType.SFX:
+                if (audioAction == AudioAction.START)
+                {
+                    if (stopSameAudioType)
+                    {
+                        StopAllAudiosByAudioType(audioType, name);
+                        PlayAudio(name, audioType);
+                        break;
+                    }
+                    // !stopSameAudioType
                     PlayAudio(name, audioType);
                     break;
                 }
-                StopAllAudiosByAudioType(audioType);
+                // RESTART si l'audio Ã©tait dÃ©jÃ  en cours de lecture
+                StopAudio(name, audioType);
                 audio.source.Play();
                 break;
             default:
@@ -111,7 +139,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Pour les audios qu'on ne veut pas redémarrer à 0
     public void PlayAudio(string name, Audio.AudioType audioType)
     {
         Audio audio = Array.Find(audios, sound => sound.clip.name == name);
@@ -133,7 +160,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // Stop un audio en particulier d'un certain type
-    public void StopAudio(string name, Audio.AudioType audioType, bool resettable = true)
+    public void StopAudio(string name, Audio.AudioType audioType)
     {
         Audio audio = Array.Find(audios, sound => sound.clip.name == name);
 
@@ -158,7 +185,7 @@ public class AudioManager : MonoBehaviour
         stopAllAudios = false;
     }
 
-    // Stop absolument tous les audios en cours sauf pour l'exception spécifiée
+    // Stop absolument tous les audios en cours sauf pour l'exception spÃ©cifiÃ©e
     public void StopAllAudios(string name)
     {
         foreach (Audio audio in audios)
@@ -181,7 +208,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Stop absolument tous les audios d'un même type en cours
+    // Stop absolument tous les audios d'un mÃªme type en cours
     public void StopAllAudiosByAudioType(Audio.AudioType audioType)
     {
         foreach (Audio audio in audios)
@@ -201,7 +228,7 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    // Stop absolument tous les audios d'un même type en cours sauf pour l'exception spécifiée
+    // Stop absolument tous les audios d'un mÃªme type en cours sauf pour l'exception spÃ©cifiÃ©e
     public void StopAllAudiosByAudioType(Audio.AudioType audioType, string name)
     {
         foreach (Audio audio in audios)
@@ -227,5 +254,14 @@ public class AudioManager : MonoBehaviour
                 i--;
             }
         }
+    }
+    public void ClearAudios()
+    {
+        for (int i = 0; i < listOfAudios.Count; i++)
+            if (listOfAudios[i] == null)
+            {
+                listOfAudios.RemoveAt(i);
+                i--;
+            }
     }
 }
