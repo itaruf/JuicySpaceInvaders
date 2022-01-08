@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class UFO : Enemy
 {
+    public Vector3 direction;
+    public Vector3 spawnPosition;
+    public float movementSpeed;
+
+    [Header("Walls Colliders")]
+    [SerializeField] public GameObject leftCollider;
+    [SerializeField] public GameObject rightCollider;
+
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -13,9 +21,9 @@ public class UFO : Enemy
     void Update()
     {
         SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
+        if (!GameStateManager.Instance.isGameOver)
+            MoveHorizontally();
     }
-
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,6 +31,12 @@ public class UFO : Enemy
         {
             Destroy(gameObject);
         }
+    }
+
+    public void MoveHorizontally()
+    {
+
+        transform.position += direction * movementSpeed * Time.deltaTime;
     }
 
 }
