@@ -5,109 +5,76 @@ using UnityEngine;
 
 public class EnemySpawnerManager : MonoBehaviour
 {
-    [Header("Enemy Models")]
+    [Header("Alien")]
+    [SerializeField] public EnemyWaveConfig[] enemyWaveConfigs;
+    [SerializeField] public GameObject enemyWaveModel;
     public Alien alienModel;
     public List<Sprite> alienSprites;
-    public Transform aliensStartPoint;
-
-    public UFO ufoModel;
-    public List<Sprite> ufoSprites;
-    public Transform ufoLeftStartPoint;
-    public Transform ufoRightStartPoint;
-    private UFO _ufo;
-
-    public List<Enemy> enemies;
-    public GameObject matrixOfEnemies; // Dans la hiérarchie
-
     private int _currentAlienSpriteIndex = 0;
-    private int _currentUfoSpriteIndex = 0;
 
-    [Header("Enemy Numbers")]
-    public int numberOfAliensWaves;
-    public int numberOfAliensPerWave;
+    [Header("UFO")]
+    [SerializeField] public UFOConfig UFOConfig;
+    [SerializeField] public UFO ufoModel;
 
-    public float yAliensSpawnPos;
-
-    public float xUnit;
-    public float yUnit;
-
-    public float ufoMovementSpeed;
-    public float ufoMovementSpeedMultiplier;
-
-    public float aliensMovementSpeed;
-    public float aliensMovementSpeedMultiplier;
-
-    private Vector3 _direction;
-    private Vector3 _ufoDirection;
-
-    [Header("Walls Colliders")]
-    public GameObject leftCollider;
-    public GameObject rightCollider;
-
-    // Start is called before the first frame update
+    private static EnemySpawnerManager _instance;
+    public static EnemySpawnerManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                return null;
+            return _instance;
+        }
+    }
     void Start()
     {
-        if (UnityEngine.Random.Range(0, 2) == 0)
-            _direction = Vector3.right;
-        else 
-            _direction = Vector3.left;
-
-        SpawnAliens();
-        SpawnUFO();
+        foreach(EnemyWaveConfig enemyWaveConfig in enemyWaveConfigs)
+        {
+            SpawnAliens(enemyWaveConfig);
+        }
+        SpawnUFO(UFOConfig);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!GameStateManager.Instance.isGameOver)
-        {
-            MoveHorizontally();
-            MoveUfoHorizontally();
-        }
+        
     }
 
-    void MoveHorizontally()
+    public void SpawnAliens(EnemyWaveConfig enemyWaveConfig)
     {
-        matrixOfEnemies.transform.position += _direction * aliensMovementSpeed * Time.deltaTime;
+        GameObject enemyWaveParent = Instantiate(enemyWaveModel);
+        enemyWaveConfig.enemyWave = enemyWaveParent; // GameObject Parent qui va permettre de bouger toute la vague
 
-        foreach (Transform enemy in matrixOfEnemies.transform)
+        EnemyWave enemyWave = enemyWaveParent.GetComponent<EnemyWave>();
+
+        // Copy-paste data from config
+
+        enemyWave.enemyWave = enemyWaveParent;
+
+        enemyWave.numberOfWaves = enemyWaveConfig.numberOfWaves;
+        enemyWave.numberOfEnemiesPerWave = enemyWaveConfig.numberOfEnemiesPerWave;
+
+        enemyWave.movementSpeed = enemyWaveConfig.movementSpeed;
+
+        enemyWave.yAliensSpawnPos = enemyWaveConfig.yAliensSpawnPos;
+
+        enemyWave.xUnit = enemyWaveConfig.xUnit;
+        enemyWave.yUnit = enemyWaveConfig.yUnit;
+
+        enemyWave.direction = enemyWaveConfig.direction;
+        enemyWave.enemyWave = enemyWaveConfig.enemyWave;
+
+        enemyWave.leftCollider = enemyWaveConfig.leftCollider;
+        enemyWave.rightCollider = enemyWaveConfig.rightCollider;
+
+        enemyWave.aliens = new Alien[enemyWave.numberOfWaves, enemyWave.numberOfEnemiesPerWave];
+
+        float currentXPosition = InitialXAliensPos(enemyWave.numberOfEnemiesPerWave);
+        float currentYPosition = enemyWave.yAliensSpawnPos;
+
+        for (int i = 0; i < enemyWaveConfig.numberOfWaves; i++)
         {
-            if (!enemy.gameObject.activeInHierarchy) 
-                continue;
-
-            if (_direction == Vector3.right && enemy.position.x >= rightCollider.transform.position.x - 1.0f)
-            {
-                MoveVertically();
-                break;
-            }
-            else if (_direction == Vector3.left && enemy.position.x <= leftCollider.transform.position.x + 1.0f)
-            {
-                MoveVertically();
-                break;
-            }
-        }
-    }
-
-    void MoveVertically()
-    {
-        aliensMovementSpeed *= aliensMovementSpeedMultiplier;
-        ufoMovementSpeed *= ufoMovementSpeedMultiplier;
-
-        _direction = new Vector3(-_direction.x, 0.0f, 0.0f);
-
-        Vector3 position = matrixOfEnemies.transform.position;
-        position.y -= 1.0f;
-
-        matrixOfEnemies.transform.position = position;
-    }
-    public void SpawnAliens()
-    {
-        float currentXPosition = InitialXAliensPos();
-        float currentYPosition = yAliensSpawnPos;
-
-        for (int i = 0; i < numberOfAliensWaves; i++)
-        {
-            for (int j = 0; j < numberOfAliensPerWave; j++)
+            for (int j = 0; j < enemyWave.numberOfEnemiesPerWave; j++)
             {
                 Vector3 pos = new Vector3(currentXPosition, currentYPosition);
                 Quaternion rot = alienModel.transform.rotation;
@@ -115,69 +82,60 @@ public class EnemySpawnerManager : MonoBehaviour
 
                 Alien alien = GameObject.Instantiate<Alien>(alienModel, pos, rot);
                 alien.transform.localScale = scale;
-                alien.SetSprite(alienSprites[_currentAlienSpriteIndex]);
-                alien.transform.parent = matrixOfEnemies.transform;
+                alien.sprite = alienSprites[_currentAlienSpriteIndex];
+                alien.SetSprite(alien.sprite);
+                alien.transform.parent = enemyWaveConfig.enemyWave.transform;
 
-                enemies.Add(alien);
-                currentXPosition += xUnit;
+                currentXPosition += enemyWave.xUnit;
+
+                enemyWave.aliens[i, j] = alien;
+                Debug.Log(_currentAlienSpriteIndex);
+
             }
 
             if (i % 2 == 0)
-            {
                 _currentAlienSpriteIndex++;
-            }
 
             if (_currentAlienSpriteIndex == alienSprites.Count)
-            {
                 _currentAlienSpriteIndex = 0;
-            }
 
-            currentXPosition = InitialXAliensPos();
-            currentYPosition -= yUnit;
+            currentXPosition = InitialXAliensPos(enemyWave.numberOfEnemiesPerWave);
+            currentYPosition -= enemyWave.yUnit;
 
         }
         _currentAlienSpriteIndex = 0;
     }
 
-    public void SpawnUFO()
+    public void SpawnUFO(UFOConfig UFOConfig)
     {
 
-        Vector3 pos;
-        if (_direction == Vector3.left)
-        {
-            // On start à droite pour aller vers la gauche
-            pos = new Vector3(ufoRightStartPoint.position.x, ufoRightStartPoint.position.y);
-        }
+        UFO UFO = Instantiate(ufoModel);
 
-        else
-        {
-            // On start à gauche pour aller vers la droite
-            pos = new Vector3(ufoLeftStartPoint.position.x, ufoLeftStartPoint.position.y);
-        }
+        UFO.spriteRenderer = UFOConfig.spriteRenderer;
+        UFO.health = UFOConfig.health;
+        UFO.isSeen = UFOConfig.isSeen;
+        UFO.player = UFOConfig.player;
+        UFO.ghostSprite = UFOConfig.ghostSprite;
+        UFO.sprite = UFOConfig.sprite;
+        UFO.SeenLayerMask = UFOConfig.SeenLayerMask;
+        UFO.direction = UFOConfig.direction;
+        UFO.spawnPosition = UFOConfig.spawnPosition;
+        UFO.movementSpeed = UFOConfig.movementSpeed;
+        UFO.leftCollider = UFOConfig.leftCollider; 
+        UFO.rightCollider = UFOConfig.rightCollider;
 
-        Quaternion rot = ufoModel.transform.rotation;
-        Vector3 scale = ufoModel.transform.localScale;
-
-        _ufo = GameObject.Instantiate<UFO>(ufoModel, pos, rot);
-        _ufo.transform.localScale = scale;
-        _ufo.SetSprite(ufoSprites[_currentUfoSpriteIndex]);
-        _ufoDirection = _direction;
+        UFO.transform.position = UFO.spawnPosition;
+        UFO.transform.localScale = ufoModel.transform.localScale;
+        UFO.transform.rotation = ufoModel.transform.rotation;
     }
 
-    void MoveUfoHorizontally()
-    {
-        if (!_ufo)
-            return;
-        _ufo.transform.position += _ufoDirection * ufoMovementSpeed * Time.deltaTime;
-    }
-
-    float InitialXAliensPos()
+    public float InitialXAliensPos(float numberOfEnemiesPerWave)
     {
         float position;
-        if (numberOfAliensPerWave % 2 == 0)
-            position = (float)(-numberOfAliensPerWave / 2 + 0.5);
+        if (numberOfEnemiesPerWave % 2 == 0)
+            position = (float)(-numberOfEnemiesPerWave / 2 + 0.5);
         else
-            position = (float)(-numberOfAliensPerWave / 2);
+            position = (float)(-numberOfEnemiesPerWave / 2);
         return (position);
     }
 }

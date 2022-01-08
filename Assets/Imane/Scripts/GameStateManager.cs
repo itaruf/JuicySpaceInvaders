@@ -17,6 +17,7 @@ public class GameStateManager : MonoBehaviour
     }
 
     public bool isGameOver = false;
+    public float timeScaleIncrease = 1f;
 
     [HideInInspector]
     public AudioSource[] audioSources;
@@ -89,6 +90,7 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver(bool value)
     {
+        Time.timeScale = 1f;
         isGameOver = value;
     }
 

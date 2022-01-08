@@ -20,10 +20,6 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        //   player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        sprite = GetComponent<SpriteRenderer>().sprite;
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = sprite;
     }
 
     // Update is called once per frame
@@ -60,6 +56,6 @@ public class Enemy : MonoBehaviour
 
     public void SetSprite(Sprite sprite)
     {
-        spriteRenderer.sprite = sprite;
+        GetComponent<SpriteRenderer>().sprite = sprite;
     }
 }
