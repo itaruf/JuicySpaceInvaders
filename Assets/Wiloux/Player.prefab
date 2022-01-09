@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 244925906886226985}
   - component: {fileID: 1213228091588746017}
   - component: {fileID: 364225032460535623}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: FieldOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 68a95ea76a49a2841abeb9bb67097ba0, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   projectile: {fileID: 4198526051925206524, guid: 79a9b32419bdf0f439cf89b87b07064e, type: 3}
   projectileCDDuration: 0.2
   slider: {fileID: 0}
-  overHeatGain: 50
-  overHeatLoss: 5
+  overHeatGain: 75
+  overHeatLoss: 0.5
   overHeatMax: 200
   overHeatSmashAmount: 3
   overHeatSmashValue: 0
