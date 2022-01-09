@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 5f;
@@ -18,18 +18,14 @@ public class PlayerProjectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = Vector2.up * speed * Time.deltaTime;
+        rb.velocity = Vector2.down * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Player" || other.tag == "Wall" )
         {
-            if (other.GetComponent<UFO>() != null)
-                other.GetComponent<UFO>().GetDamaged(damage);
-
-            if (other.GetComponent<Alien>() != null)
-                other.GetComponent<Alien>().GetDamaged(damage);
+            //PlayerDeathIg
             Destroy(gameObject);
         }
     }

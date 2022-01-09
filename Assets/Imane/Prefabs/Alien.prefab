@@ -72,7 +72,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -153,3 +153,5 @@ MonoBehaviour:
   SeenLayerMask:
     serializedVersion: 2
     m_Bits: 1015
+  projectileCDDurMinMax: {x: 5, y: 20}
+  projectile: {fileID: 4198526051925206524, guid: b88b5a069b676ac4eb87c17a0447a1b3, type: 3}
