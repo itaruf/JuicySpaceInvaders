@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class UFO : Enemy
 {
+    [Header("UFO Config")]
+    public float spawnTimer;
     public Vector3 direction;
     public Vector3 spawnPosition;
     public float movementSpeed;
 
+    public float UFOMinSpawnTimer;
+    public float UFOMaxSpawnTimer;
+
     [Header("Walls Colliders")]
-    [SerializeField] public GameObject leftCollider;
-    [SerializeField] public GameObject rightCollider;
+    public GameObject leftCollider;
+    public GameObject rightCollider;
 
     void Start()
     {
@@ -25,17 +30,16 @@ public class UFO : Enemy
             MoveHorizontally();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject == leftCollider || collision.gameObject == rightCollider)
         {
+            EnemySpawnerManager.Instance.totalEnemies--;
             Destroy(gameObject);
         }
     }
-
     public void MoveHorizontally()
     {
-
         transform.position += direction * movementSpeed * Time.deltaTime;
     }
 

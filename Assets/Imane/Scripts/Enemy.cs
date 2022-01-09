@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -47,7 +46,10 @@ public class Enemy : MonoBehaviour
     {
         health -= amount;
         if (health <= 0)
-            Destroy(gameObject);
+        {
+           EnemySpawnerManager.Instance.totalEnemies--;
+           Destroy(gameObject);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

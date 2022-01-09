@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class UFOConfig
 {
+    [Header("UFO Config")]
     public SpriteRenderer spriteRenderer;
     public int health;
     public bool isSeen;
@@ -17,9 +18,12 @@ public class UFOConfig
     public Vector3 spawnPosition;
     public float movementSpeed;
 
+    public float UFOMinSpawnTimer;
+    public float UFOMaxSpawnTimer;
+
     [Header("Walls Colliders")]
-    [SerializeField] public GameObject leftCollider;
-    [SerializeField] public GameObject rightCollider;
+    public GameObject leftCollider;
+    public GameObject rightCollider;
 
     // Start is called before the first frame update
     void Start()

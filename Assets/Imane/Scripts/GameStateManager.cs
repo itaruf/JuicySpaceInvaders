@@ -17,10 +17,10 @@ public class GameStateManager : MonoBehaviour
     }
 
     public bool isGameOver = false;
+    public bool isWon = false;
     public float timeScaleIncrease = 1f;
 
-    [HideInInspector]
-    public AudioSource[] audioSources;
+    [HideInInspector] public AudioSource[] audioSources;
 
     void Awake()
     {
@@ -37,15 +37,19 @@ public class GameStateManager : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (EnemySpawnerManager.Instance.totalEnemies == 0)
+        {
+            isWon = true;
+        }
+
         /*TEST AUDIO SOURCES SUR L'AUDIO MANAGER*/
         if (Input.GetKeyDown(KeyCode.T))
-            AudioManager.Instance.PlayAudio("BossMain", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
+            AudioManager.Instance.PlayAudio("Theme", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
 
         if (Input.GetKeyDown(KeyCode.Y))
-            AudioManager.Instance.PlayAudio("BossMain", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.RESTART);
+            AudioManager.Instance.PlayAudio("Theme", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.RESTART);
 
         if (Input.GetKeyDown(KeyCode.U))
             AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START,  false);
@@ -85,7 +89,6 @@ public class GameStateManager : MonoBehaviour
         /**/
         if (Input.GetKeyDown(KeyCode.N))
             SceneManager.LoadScene("imane");
-
     }
 
     public void GameOver(bool value)

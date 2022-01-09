@@ -7,18 +7,21 @@ using UnityEngine;
 [Serializable]
 public class EnemyWave : MonoBehaviour
 {
-    [SerializeField] public int numberOfWaves;
-    [SerializeField] public int numberOfEnemiesPerWave;
-    [SerializeField] public float movementSpeed;
-    [SerializeField] public float yAliensSpawnPos;
-    [SerializeField] public float xUnit;
-    [SerializeField] public float yUnit;
-    [SerializeField] public Vector3 direction;
-    [SerializeField] public GameObject enemyWave;
+    [Header("Enemy Wave Config")]
+    public int numberOfWaves;
+    public int numberOfEnemiesPerWave;
+    public float movementSpeed;
+    public float movementSpeedMultiplier;
+    public float yAliensSpawnPos;
+    public float xUnit;
+    public float yUnit;
+    public float spawnTimer;
+    public Vector3 direction;
+    public GameObject enemyWave;
 
     [Header("Walls Colliders")]
-    [SerializeField] public GameObject leftCollider;
-    [SerializeField] public GameObject rightCollider;
+    public GameObject leftCollider;
+    public GameObject rightCollider;
 
     public Alien[,] aliens;
 
@@ -30,7 +33,10 @@ public class EnemyWave : MonoBehaviour
     void Update()
     {
         if (aliens.Length == 0)
+        {
+            EnemySpawnerManager.Instance.remainingWaves--;
             Destroy(gameObject);
+        }
 
         if (!GameStateManager.Instance.isGameOver)
         {
@@ -66,6 +72,7 @@ public class EnemyWave : MonoBehaviour
 
     public void MoveVertically()
     {
+        movementSpeed *= movementSpeedMultiplier;
         //Time.timeScale += GameStateManager.Instance.timeScaleIncrease;
         direction = new Vector3(-direction.x, 0.0f, 0.0f);
 
@@ -135,5 +142,13 @@ public class EnemyWave : MonoBehaviour
             j++;
         }
         return result;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == rightCollider || collision.gameObject == leftCollider)
+        {
+            MoveVertically();
+        }
     }
 }
