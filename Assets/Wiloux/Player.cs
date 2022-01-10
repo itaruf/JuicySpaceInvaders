@@ -22,10 +22,17 @@ public class Player : MonoBehaviour
     public int overHeatSmashAmount;
     public int overHeatSmashValue;
 
+    [Header("Energy")]
+    public Vector2 FOVMinMax;
+    public Vector2 DistanceMinMax;
+    public float EnergyMax;
+    public float Energy;
+    public bool isCharging;
+    public float chargeAmount;
 
     [Header("FOV")]
     public GameObject FieldOfView;
-    [Range(0f,360f)] public float fov = 90f;
+    [Range(0f, 360f)] public float fov = 90f;
     public float viewDistance = 50f;
     public int rayCount = 5;
     public float offset = 0;
@@ -47,13 +54,35 @@ public class Player : MonoBehaviour
         meshFilter = GetComponentInChildren<MeshFilter>();
 
         FieldOfViewInit();
-
+        Energy = EnergyMax;
     }
 
+
+    void UpdateFOV()
+    {
+        fov = Mathf.Lerp(FOVMinMax.x, FOVMinMax.y, Energy / EnergyMax);
+        viewDistance = Mathf.Lerp(DistanceMinMax.x, DistanceMinMax.y, Energy / EnergyMax);
+
+        if(Energy >= EnergyMax)
+        {
+            Energy = EnergyMax;
+        }
+
+        if (Energy >= 0)
+        {
+            Energy -= Time.deltaTime;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
+
+        UpdateFOV();
+
+
+        Energy += isCharging ? chargeAmount : 0;
+
         transform.position = CalculateMovements();
 
         if (projectileCD >= 0)
@@ -62,10 +91,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
             Shoot();
 
-        if(isOverheated && Input.GetKeyDown(KeyCode.A))
+        if (isOverheated && Input.GetKeyDown(KeyCode.A))
         {
             overHeatSmashValue--;
-            if(overHeatSmashValue <= 0)
+            if (overHeatSmashValue <= 0)
             {
                 isOverheated = false;
                 overHeatValue = 0;
@@ -73,8 +102,8 @@ public class Player : MonoBehaviour
         }
 
         //Losing heat over time
-        if(!isOverheated && overHeatValue >= 0)
-        overHeatValue -= overHeatLoss;
+        if (!isOverheated && overHeatValue >= 0)
+            overHeatValue -= overHeatLoss;
 
         slider.value = overHeatValue / overHeatMax;
     }
@@ -83,7 +112,7 @@ public class Player : MonoBehaviour
     {
         health -= dmg;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             GameStateManager.Instance.GameOver(true);
         }
@@ -110,6 +139,9 @@ public class Player : MonoBehaviour
         if (isOverheated)
             return;
 
+        if (Energy <= 0)
+            return;
+
         if (projectileCD <= 0)
         {
             overHeatValue += overHeatGain;
@@ -117,7 +149,7 @@ public class Player : MonoBehaviour
             Destroy(lastProj, 5f);
             projectileCD = projectileCDDuration;
         }
-        if(overHeatValue >= overHeatMax)
+        if (overHeatValue >= overHeatMax)
         {
             isOverheated = true;
             overHeatSmashValue = overHeatSmashAmount;
@@ -159,14 +191,14 @@ public class Player : MonoBehaviour
             RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVecFromAngle(angle + _offset), viewDistance, layerMask);
             if (raycastHit2D.collider == null)
             {
-                Debug.DrawRay(origin, GetVecFromAngle(angle + _offset) * viewDistance, Color.green);
+                //   Debug.DrawRay(origin, GetVecFromAngle(angle + _offset) * viewDistance, Color.green);
                 // No hit
                 vertex = origin + GetVecFromAngle(angle + _offset) * viewDistance;
             }
             else
             {
                 // Hit object
-                Debug.DrawRay(origin, GetVecFromAngle(angle + _offset) * viewDistance, Color.blue);
+                //  Debug.DrawRay(origin, GetVecFromAngle(angle + _offset) * viewDistance, Color.blue);
                 vertex = raycastHit2D.point;
             }
             vertices[vertexIndex] = vertex;
@@ -185,15 +217,13 @@ public class Player : MonoBehaviour
 
         }
 
-        
+
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
         meshFilter.mesh = mesh;
     }
-
-
 
     Vector3 GetVecFromAngle(float angle)
     {
@@ -202,4 +232,19 @@ public class Player : MonoBehaviour
     }
 
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Energy"))
+        {
+            isCharging = true;
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Energy")
+            isCharging = false;
+    }
 }

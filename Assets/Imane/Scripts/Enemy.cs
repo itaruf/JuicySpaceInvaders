@@ -69,7 +69,6 @@ public class Enemy : MonoBehaviour
 
     protected void Shoot()
     {
-        Debug.Log("shoots;");
             GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
             Destroy(lastProj, 5f);
             projectileCD = Random.Range(projectileCDDurMinMax.x, projectileCDDurMinMax.y);
