@@ -72,8 +72,8 @@ public class EnemySpawnerManager : MonoBehaviour
     {
         while (true)
         {
-            SpawnAliens(enemyWaveConfigs[currentWave]);
             yield return new WaitForSeconds(timer);
+            SpawnAliens(enemyWaveConfigs[currentWave]);
 
             if (currentWave == totalWaves)
                 break;
@@ -96,6 +96,7 @@ public class EnemySpawnerManager : MonoBehaviour
         enemyWave.movementSpeed = enemyWaveConfig.movementSpeed;
         enemyWave.movementSpeedMultiplier = enemyWaveConfig.movementSpeedMultiplier;
 
+        enemyWave.xAliensSpawnPos = enemyWaveConfig.xAliensSpawnPos;
         enemyWave.yAliensSpawnPos = enemyWaveConfig.yAliensSpawnPos;
 
         enemyWave.xUnit = enemyWaveConfig.xUnit;
@@ -110,8 +111,8 @@ public class EnemySpawnerManager : MonoBehaviour
 
         enemyWave.aliens = new Alien[enemyWave.numberOfWaves, enemyWave.numberOfEnemiesPerWave];
 
-        // float currentXPosition = enemyWave.xAliensSpawnPos;
-        float currentXPosition = InitialXAliensPos(enemyWave.numberOfEnemiesPerWave);
+        float currentXPosition = enemyWave.xAliensSpawnPos;
+        //float currentXPosition = InitialXAliensPos(enemyWave.numberOfEnemiesPerWave);
         float currentYPosition = enemyWave.yAliensSpawnPos;
 
         for (int i = 0; i < enemyWaveConfig.numberOfWaves; i++)
@@ -139,8 +140,8 @@ public class EnemySpawnerManager : MonoBehaviour
             if (_currentAlienSpriteIndex == alienSprites.Count)
                 _currentAlienSpriteIndex = 0;
 
-            // float currentXPosition = enemyWave.xAliensSpawnPos;
-            currentXPosition = InitialXAliensPos(enemyWave.numberOfEnemiesPerWave);
+            currentXPosition = enemyWave.xAliensSpawnPos;
+            //currentXPosition = InitialXAliensPos(enemyWave.numberOfEnemiesPerWave);
             currentYPosition -= enemyWave.yUnit;
 
         }
