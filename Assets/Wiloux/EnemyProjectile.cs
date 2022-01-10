@@ -23,9 +23,13 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" || other.tag == "Wall" )
+        if (other.tag == "Player"  )
         {
             //PlayerDeathIg
+            Destroy(gameObject);
+        } else if(other.GetComponent<Bunker>())
+        {
+            other.GetComponent<Bunker>().CheckCollision(this.GetComponent<BoxCollider2D>(), this.transform.position);
             Destroy(gameObject);
         }
     }

@@ -241,8 +241,8 @@ MonoBehaviour:
   overHeatSmashAmount: 3
   overHeatSmashValue: 0
   FieldOfView: {fileID: 115150375312879507}
-  fov: 90
-  viewDistance: 15
+  fov: 60
+  viewDistance: 10
   rayCount: 30
   offset: 90
   layerMask:

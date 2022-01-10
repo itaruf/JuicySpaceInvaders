@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [Header("Base")]
+    public int health = 3;
     public float speed = 5.0f;
     public GameObject projectile;
     public float projectileCDDuration;
@@ -76,6 +77,16 @@ public class Player : MonoBehaviour
         overHeatValue -= overHeatLoss;
 
         slider.value = overHeatValue / overHeatMax;
+    }
+
+    private void TakeDmg(int dmg)
+    {
+        health -= dmg;
+
+        if(health <= 0)
+        {
+            GameStateManager.Instance.GameOver(true);
+        }
     }
 
     private void LateUpdate()
