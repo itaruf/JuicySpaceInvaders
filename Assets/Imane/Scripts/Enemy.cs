@@ -23,10 +23,16 @@ public class Enemy : MonoBehaviour
 
     public GameObject projectile;
 
+    public ParticleSystem onShootParticles;
+    public ParticleSystem onDeathParticles;
+
+    public bool isDead = false;
+
     void Start()
     {
         //   player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         sprite = GetComponent<SpriteRenderer>().sprite;
+
         //spriteRenderer = GetComponent<SpriteRenderer>();
         //spriteRenderer.sprite = sprite;
     }
@@ -69,10 +75,12 @@ public class Enemy : MonoBehaviour
 
     protected void Shoot()
     {
-        Debug.Log("shoots;");
-            GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
-            Destroy(lastProj, 5f);
-            projectileCD = Random.Range(projectileCDDurMinMax.x, projectileCDDurMinMax.y);
+        onShootParticles.Play(); // SFX to play when the enemy is shooting
+
+        GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
+        lastProj.GetComponentInChildren<ParticleSystem>().Play();
+
+        projectileCD = Random.Range(projectileCDDurMinMax.x, projectileCDDurMinMax.y);
     }
 
     public void GetDamaged(int amount)
@@ -81,8 +89,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
            EnemySpawnerManager.Instance.totalEnemies--;
-            Destroy(gameObject);
-    }
+           StartCoroutine(OnDestroyed());
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -92,5 +100,13 @@ public class Enemy : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         spriteRenderer.sprite = sprite;
+    }
+
+    public IEnumerator OnDestroyed()
+    {
+        isDead = true;
+        onDeathParticles.Play();
+        yield return new WaitForSeconds(0.25f);
+        Destroy(gameObject);
     }
 }

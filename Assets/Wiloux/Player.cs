@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
     public GameObject projectile;
     public float projectileCDDuration;
     private float projectileCD;
+    public ParticleSystem onShootParticles;
+    public ParticleSystem onDeathParticles;
+    public ParticleSystem onMoveParticles;
+    public bool isDead = false;
+    public Rigidbody2D rb;
+    private Vector3 lastPos;
 
     [Header("Overheat")]
     public Slider slider;
@@ -20,7 +26,6 @@ public class Player : MonoBehaviour
     private float overHeatValue;
     public int overHeatSmashAmount;
     public int overHeatSmashValue;
-
 
     [Header("FOV")]
     public GameObject FieldOfView;
@@ -37,6 +42,10 @@ public class Player : MonoBehaviour
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
 
+    [Header("Camera Shake On Shoot")]
+    public CameraShakeConfig cameraShakeOnShootSuccess;
+    public CameraShakeConfig cameraShakeOverheatSmash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,13 +56,14 @@ public class Player : MonoBehaviour
 
         FieldOfViewInit();
 
+        lastPos = transform.position;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = CalculateMovements();
+        lastPos = transform.position = CalculateMovements();
 
         if (projectileCD >= 0)
             projectileCD -= Time.deltaTime;
@@ -64,6 +74,9 @@ public class Player : MonoBehaviour
         if(isOverheated && Input.GetKeyDown(KeyCode.A))
         {
             overHeatSmashValue--;
+
+            CameraShake.Instance.OnStartShakeCamera(cameraShakeOverheatSmash.duration, cameraShakeOverheatSmash.magnitude, cameraShakeOverheatSmash.minRange, cameraShakeOverheatSmash.maxRange, cameraShakeOverheatSmash.shakeType);
+
             if(overHeatSmashValue <= 0)
             {
                 isOverheated = false;
@@ -87,6 +100,9 @@ public class Player : MonoBehaviour
     {
         Vector3 playerPos = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y);
 
+        if (playerPos != lastPos)
+            onMoveParticles.Play();
+
         playerPos.x = Mathf.Clamp(playerPos.x, Camera.main.ViewportToWorldPoint(Vector3.zero).x + (GetComponent<BoxCollider2D>().bounds.size.x / 2), Camera.main.ViewportToWorldPoint(Vector3.one).x - (GetComponent<BoxCollider2D>().bounds.size.x / 2));
 
         FieldOfView.gameObject.transform.position = new Vector3(0, 0, 0);
@@ -101,9 +117,15 @@ public class Player : MonoBehaviour
 
         if (projectileCD <= 0)
         {
+            CameraShake.Instance.OnStartShakeCamera(cameraShakeOnShootSuccess.duration, cameraShakeOnShootSuccess.magnitude, cameraShakeOnShootSuccess.minRange, cameraShakeOnShootSuccess.maxRange, cameraShakeOnShootSuccess.shakeType);
+
+            onShootParticles.Play(); // SFX to play when the player is shooting
+
             overHeatValue += overHeatGain;
+
             GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
-            Destroy(lastProj, 5f);
+            lastProj.GetComponentInChildren<ParticleSystem>().Play();
+
             projectileCD = projectileCDDuration;
         }
         if(overHeatValue >= overHeatMax)
@@ -190,5 +212,12 @@ public class Player : MonoBehaviour
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
 
+    public IEnumerator OnDestroyed()
+    {
+        isDead = true;
+        onDeathParticles.Play();
+        yield return new WaitForSeconds(0.25f);
+        Destroy(gameObject);
+    }
 
 }
