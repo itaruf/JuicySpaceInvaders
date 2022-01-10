@@ -11,6 +11,7 @@ public class EnemyWaveConfig
     public int numberOfEnemiesPerWave;
     public float movementSpeed;
     public float movementSpeedMultiplier;
+    public float xAliensSpawnPos;
     public float yAliensSpawnPos;
     public float xUnit;
     public float yUnit;
