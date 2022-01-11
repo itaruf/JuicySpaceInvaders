@@ -290,6 +290,7 @@ MonoBehaviour:
     minRange: -0.2
     maxRange: 0.2
     shakeType: 2
+  thunder: {fileID: 0}
 --- !u!1001 &2402585162379746530
 PrefabInstance:
   m_ObjectHideFlags: 0
