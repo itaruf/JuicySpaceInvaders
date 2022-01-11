@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class PlayerProjectile : Projectile
 {
-    private Rigidbody2D rb;
-    public float speed = 5f;
-    public int damage = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-     //   transform.position = new Vector3(transform.position.x, transform.position.y, -2f);
+        trailParticles.Play();
+        AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX);
+        Destroy(gameObject, destroyTime);
+        StartCoroutine(OnDestroyed());
+        //   transform.position = new Vector3(transform.position.x, transform.position.y, -2f);
     }
 
     // Update is called once per frame
@@ -26,11 +27,19 @@ public class PlayerProjectile : MonoBehaviour
         if (other.tag == "Enemy")
         {
             if (other.GetComponent<UFO>() != null)
-                other.GetComponent<UFO>().GetDamaged(damage);
+                if (!other.GetComponent<UFO>().isDead)
+                {
+                    other.GetComponent<UFO>().GetDamaged(damage);
+                    OnHit();
+                }
 
             if (other.GetComponent<Alien>() != null)
-                other.GetComponent<Alien>().GetDamaged(damage);
-            Destroy(gameObject);
+                if (!other.GetComponent<Alien>().isDead)
+                {
+                    other.GetComponent<Alien>().GetDamaged(damage);
+                    OnHit();
+                }
         }
     }
+
 }

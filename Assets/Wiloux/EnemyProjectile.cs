@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyProjectile : MonoBehaviour
+public class EnemyProjectile : Projectile
 {
-    private Rigidbody2D rb;
-    public float speed = 5f;
-    public int damage = 1;
-
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        transform.position = new Vector3(transform.position.x, transform.position.y, -2f);
+        trailParticles.Play();
+
+        Destroy(gameObject, destroyTime);
+        StartCoroutine(OnDestroyed());
     }
 
     // Update is called once per frame
@@ -26,11 +25,15 @@ public class EnemyProjectile : MonoBehaviour
         if (other.tag == "Player"  )
         {
             //PlayerDeathIg
+            OnHit();
             Destroy(gameObject);
-        } else if(other.GetComponent<Bunker>())
+        } 
+        else if(other.GetComponent<Bunker>())
         {
+            OnHit();
             other.GetComponent<Bunker>().CheckCollision(this.GetComponent<BoxCollider2D>(), this.transform.position);
             Destroy(gameObject);
         }
     }
+
 }

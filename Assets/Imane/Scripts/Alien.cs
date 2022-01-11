@@ -15,17 +15,20 @@ public class Alien : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (CheckIfObstruction())
+        if (!isDead)
         {
-            return;
-        };
-        if (projectileCD >= 0)
-        {
-            projectileCD -= Time.deltaTime;
-        }
-        else
-        {
-            Shoot();
+            if (CheckIfObstruction())
+            {
+                return;
+            };
+            if (projectileCD >= 0)
+            {
+                projectileCD -= Time.deltaTime;
+            }
+            else
+            {
+                Shoot();
+            }
         }
         //   SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
 
