@@ -103,7 +103,7 @@ public class AudioManager : MonoBehaviour
             // 1 thème à la fois
             case Audio.AudioType.BACKGROUND:
                 // START si l'audio n'était pas en cours de lecture
-                if (audioAction == AudioAction.START) 
+                if (audioAction == AudioAction.START)
                 {
                     // Stop tous le audios d'un même type sauf l'audio à jouer s'il était déjà en cours de lecture
                     StopAllAudiosByAudioType(audioType, name);
@@ -113,7 +113,7 @@ public class AudioManager : MonoBehaviour
                 }
                 // RESTART si l'audio était déjà en cours de lecture
                 StopAllAudiosByAudioType(audioType);
-                    audio.source.Play();
+                audio.source.Play();
                 break;
 
             // Plusieurs SFX possibles à la fois
@@ -149,7 +149,17 @@ public class AudioManager : MonoBehaviour
         AudioSource audioSource = audioGameObject.GetComponent<AudioSource>();
         audioSource.clip = audio.clip;
         audioSource.volume = audio.volume;
-        audioSource.pitch = audio.pitch;
+        switch (audioType)
+        {
+            case Audio.AudioType.SFX:
+                audioSource.pitch = UnityEngine.Random.Range(audio.pitch - 0.5f, audio.pitch + 0.5f);
+                break;
+            case Audio.AudioType.BACKGROUND:
+                audioSource.pitch = audio.pitch;
+                break;
+        }
+
+
         audioSource.loop = audio.loop;
         audioSource.Play();
 

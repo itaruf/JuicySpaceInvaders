@@ -34,6 +34,11 @@ public class EnemyProjectile : Projectile
             other.GetComponent<Bunker>().CheckCollision(this.GetComponent<BoxCollider2D>(), this.transform.position);
             Destroy(gameObject);
         }
+        else if (other.tag == "BunkerWall") 
+        {
+            OnHit();
+            Destroy(gameObject);
+        }
     }
 
 }

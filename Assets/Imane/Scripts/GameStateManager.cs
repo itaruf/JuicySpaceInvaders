@@ -46,10 +46,10 @@ public class GameStateManager : MonoBehaviour
 
         /*TEST AUDIO SOURCES SUR L'AUDIO MANAGER*/
         if (Input.GetKeyDown(KeyCode.T))
-            AudioManager.Instance.PlayAudio("Theme", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
+            AudioManager.Instance.PlayAudio("BossMain", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
 
         if (Input.GetKeyDown(KeyCode.Y))
-            AudioManager.Instance.PlayAudio("Theme", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.RESTART);
+            AudioManager.Instance.PlayAudio("BossMain", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.RESTART);
 
         if (Input.GetKeyDown(KeyCode.U))
             AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START,  false);

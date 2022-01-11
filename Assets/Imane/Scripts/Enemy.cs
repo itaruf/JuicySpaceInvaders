@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     public LayerMask SeenLayerMask;
 
-    protected float projectileCD;
+    public  float projectileCD;
     public Vector2 projectileCDDurMinMax;
 
     public GameObject projectile;
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     protected bool CheckIfSeen(Transform target)

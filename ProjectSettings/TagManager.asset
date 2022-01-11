@@ -8,6 +8,7 @@ TagManager:
   - UFO
   - Enemy
   - Energy
+  - BunkerWall
   layers:
   - Default
   - TransparentFX

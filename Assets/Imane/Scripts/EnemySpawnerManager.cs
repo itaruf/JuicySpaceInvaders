@@ -56,7 +56,6 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(totalEnemies);
         if (!GameStateManager.Instance.isGameOver && !GameStateManager.Instance.isWon)
         {
         }
