@@ -126,15 +126,29 @@ public class Player : MonoBehaviour
         slider.value = overHeatValue / overHeatMax;
     }
 
-    private void TakeDmg(int dmg)
+    public void TakeDmg(int dmg)
     {
         health -= dmg;
+
+        StartCoroutine(StopTime());
 
         if (health <= 0)
         {
             GameStateManager.Instance.GameOver(true);
-        }
+        } 
     }
+
+    public GameObject thunder;
+    IEnumerator StopTime()
+    {
+        Time.timeScale = 0;
+        FindObjectOfType<ThunderManager>().ForceThunder();
+        yield return new WaitForSecondsRealtime(2f);
+        thunder.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+
 
     private void LateUpdate()
     {

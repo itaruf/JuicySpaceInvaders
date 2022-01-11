@@ -623,12 +623,12 @@ MonoBehaviour:
   totalEnemies: 0
   offset: 0.5
   enemyWaveConfigs:
-  - numberOfWaves: 1
-    numberOfEnemiesPerWave: 1
+  - numberOfWaves: 3
+    numberOfEnemiesPerWave: 4
     movementSpeed: 1
     movementSpeedMultiplier: 1.25
-    xAliensSpawnPos: 0
-    yAliensSpawnPos: 3
+    xAliensSpawnPos: -5
+    yAliensSpawnPos: 5
     xUnit: 1
     yUnit: 1
     spawnTimer: 0
@@ -638,14 +638,53 @@ MonoBehaviour:
     rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
-    movementSpeed: 1
+    movementSpeed: 2
+    movementSpeedMultiplier: 1.25
+    xAliensSpawnPos: -5
+    yAliensSpawnPos: 6
+    xUnit: 1
+    yUnit: 1
+    spawnTimer: 6
+    direction: {x: 1, y: 0, z: 0}
+    enemyWave: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
+  - numberOfWaves: 1
+    numberOfEnemiesPerWave: 1
+    movementSpeed: 2
+    movementSpeedMultiplier: 1.25
+    xAliensSpawnPos: 0
+    yAliensSpawnPos: 7
+    xUnit: 1
+    yUnit: 1
+    spawnTimer: 2
+    direction: {x: -1, y: 0, z: 0}
+    enemyWave: {fileID: 0}
+    leftCollider: {fileID: 8354977463050834384}
+    rightCollider: {fileID: 8354977462990521589}
+  - numberOfWaves: 1
+    numberOfEnemiesPerWave: 1
+    movementSpeed: 2
     movementSpeedMultiplier: 1.25
     xAliensSpawnPos: 0
     yAliensSpawnPos: 5
     xUnit: 1
     yUnit: 1
-    spawnTimer: 5
-    direction: {x: 1, y: 0, z: 0}
+    spawnTimer: 2
+    direction: {x: -1, y: 0, z: 0}
+    enemyWave: {fileID: 0}
+    leftCollider: {fileID: 8354977463050834384}
+    rightCollider: {fileID: 8354977462990521589}
+  - numberOfWaves: 1
+    numberOfEnemiesPerWave: 1
+    movementSpeed: 1
+    movementSpeedMultiplier: 1.25
+    xAliensSpawnPos: 4
+    yAliensSpawnPos: 2
+    xUnit: 1
+    yUnit: 1
+    spawnTimer: 2
+    direction: {x: -1, y: 0, z: 0}
     enemyWave: {fileID: 0}
     leftCollider: {fileID: 8354977463050834384}
     rightCollider: {fileID: 8354977461557787473}
@@ -653,12 +692,38 @@ MonoBehaviour:
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
     movementSpeedMultiplier: 1.25
-    xAliensSpawnPos: 0
-    yAliensSpawnPos: 8
+    xAliensSpawnPos: -4
+    yAliensSpawnPos: 2
+    xUnit: 1
+    yUnit: 1
+    spawnTimer: 2
+    direction: {x: -1, y: 0, z: 0}
+    enemyWave: {fileID: 0}
+    leftCollider: {fileID: 8354977463050834384}
+    rightCollider: {fileID: 8354977461557787473}
+  - numberOfWaves: 1
+    numberOfEnemiesPerWave: 1
+    movementSpeed: 2
+    movementSpeedMultiplier: 1.25
+    xAliensSpawnPos: 5
+    yAliensSpawnPos: 5
     xUnit: 1
     yUnit: 1
     spawnTimer: 10
-    direction: {x: 1, y: 0, z: 0}
+    direction: {x: -1, y: 0, z: 0}
+    enemyWave: {fileID: 0}
+    leftCollider: {fileID: 8354977463050834384}
+    rightCollider: {fileID: 8354977461557787473}
+  - numberOfWaves: 2
+    numberOfEnemiesPerWave: 6
+    movementSpeed: 1
+    movementSpeedMultiplier: 1.25
+    xAliensSpawnPos: -4
+    yAliensSpawnPos: 7
+    xUnit: 1
+    yUnit: 1
+    spawnTimer: 6
+    direction: {x: -1, y: 0, z: 0}
     enemyWave: {fileID: 0}
     leftCollider: {fileID: 8354977463050834384}
     rightCollider: {fileID: 8354977461557787473}
@@ -666,7 +731,7 @@ MonoBehaviour:
   alienModel: {fileID: 750274545089146984, guid: e24830abdebde0641a45cb6c654e5196, type: 3}
   alienSprites:
   - {fileID: 21300000, guid: bc3634893bc883544b9871ff4e045a42, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: bc3634893bc883544b9871ff4e045a42, type: 3}
   UFOConfig:
     spriteRenderer: {fileID: 2063145114646900972, guid: 0fb284b18397d3f419efe559a9115594, type: 3}
     health: 2
@@ -761,6 +826,78 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &886124679822961750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8119211906039279314}
+  - component: {fileID: 7357531238759177319}
+  - component: {fileID: 2252182579745964123}
+  m_Layer: 0
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8119211906039279314
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886124679822961750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 18.988325, y: 24.258587, z: 13.66681}
+  m_Children: []
+  m_Father: {fileID: 1836236352621707850}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.0064077973, y: -2.2792}
+  m_SizeDelta: {x: 101.11, y: 98.2431}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7357531238759177319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886124679822961750}
+  m_CullTransparentMesh: 1
+--- !u!114 &2252182579745964123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886124679822961750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: df6251f71cda3c94bbb23b26cd2c53f4, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1134061778672131531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1155,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 6092064191741723974}
+  - {fileID: 8119211906039279314}
   m_Father: {fileID: 8080165961999893119}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1748,7 +1886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7359682027527483917, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.23
+      value: -5.39
       objectReference: {fileID: 0}
     - target: {fileID: 7359682027527483917, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
       propertyPath: m_LocalPosition.z

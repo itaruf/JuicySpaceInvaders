@@ -35,6 +35,7 @@ public class GameStateManager : MonoBehaviour
         }
 
         audioSources = GetComponents<AudioSource>();
+        AudioManager.Instance.PlayAudio("Ambient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
     }
 
     void Update()

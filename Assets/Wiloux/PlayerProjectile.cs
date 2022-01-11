@@ -40,6 +40,12 @@ public class PlayerProjectile : Projectile
                     OnHit();
                 }
         }
+        else if (other.tag == "BunkerWall")
+        {
+            OnHit();
+            Destroy(gameObject);
+        }
     }
-
 }
+
+

@@ -24,14 +24,14 @@ public class EnemyProjectile : Projectile
     {
         if (other.tag == "Player"  )
         {
-            //PlayerDeathIg
+            other.GetComponent<Player>().TakeDmg(1);
             OnHit();
             Destroy(gameObject);
         } 
         else if(other.GetComponent<Bunker>())
         {
             OnHit();
-            other.GetComponent<Bunker>().CheckCollision(this.GetComponent<BoxCollider2D>(), this.transform.position);
+            other.GetComponent<Bunker>().TakeDamage();
             Destroy(gameObject);
         }
         else if (other.tag == "BunkerWall") 

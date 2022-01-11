@@ -15,6 +15,14 @@ public class ThunderManager : MonoBehaviour
         thunderValue = Random.Range(thunderCooldownMinxMax.x, thunderCooldownMinxMax.y);
     }
 
+
+    public void ForceThunder()
+    {
+        anim.SetTrigger("Trigger");
+        thunderValue = Random.Range(thunderCooldownMinxMax.x, thunderCooldownMinxMax.y);
+    }
+
+
     void Update()
     {
         
