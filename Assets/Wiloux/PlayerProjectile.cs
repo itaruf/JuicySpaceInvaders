@@ -10,7 +10,7 @@ public class PlayerProjectile : Projectile
     {
         rb = GetComponent<Rigidbody2D>();
         trailParticles.Play();
-
+        AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX);
         Destroy(gameObject, destroyTime);
         StartCoroutine(OnDestroyed());
         //   transform.position = new Vector3(transform.position.x, transform.position.y, -2f);

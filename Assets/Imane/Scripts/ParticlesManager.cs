@@ -23,10 +23,11 @@ public class ParticlesManager : MonoBehaviour
             _instance = this;
     }
 
-    public void PlayParticle(ParticleSystem particleSystem, Transform transform)
+    public void PlayParticle(ParticleSystem particleSystem, Transform transform, bool shouldDestroy = true)
     {
         ParticleSystem onDestroyParticles = Instantiate(particleSystem, transform.position, transform.rotation);
         onDestroyParticles.Play();
-        Destroy(onDestroyParticles.gameObject, onDestroyParticles.main.duration);
+        if (shouldDestroy)
+            Destroy(onDestroyParticles.gameObject, onDestroyParticles.main.duration);
     }
 }

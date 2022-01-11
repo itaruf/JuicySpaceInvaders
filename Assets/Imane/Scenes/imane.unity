@@ -1455,6 +1455,46 @@ PrefabInstance:
       propertyPath: audiosParent
       value: 
       objectReference: {fileID: 2001379179}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4faf8c892184da14bbde49f6f919d351, type: 3}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[5].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7dcbb9bff4c455b45a2f01dcf56afd7a, type: 3}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[5].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[6].pitch
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[5].volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[6].volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[5].audioType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 798334593, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: audios.Array.data[6].audioType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: UFOConfig.leftCollider
       value: 

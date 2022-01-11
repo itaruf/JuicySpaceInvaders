@@ -105,6 +105,11 @@ public class Enemy : MonoBehaviour
     public IEnumerator OnDestroyed()
     {
         isDead = true;
+
+        if (UnityEngine.Random.Range(0,9) == 0)
+            AudioManager.Instance.PlayAudio("AlienDeath2", Audio.AudioType.SFX);
+        else
+            AudioManager.Instance.PlayAudio("AlienDeath", Audio.AudioType.SFX);
         onDeathParticles.Play();
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);
