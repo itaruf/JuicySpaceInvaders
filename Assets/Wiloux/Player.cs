@@ -49,7 +49,9 @@ public class Player : MonoBehaviour
     private Vector3 origin;
     private Mesh mesh;
     private MeshFilter meshFilter;
-    private MeshRenderer meshRenderer;
+    public Material fovColor;
+    private Vector2 fovColorFlickDefaultValue;
+
 
     [Header("Camera Shake On Shoot")]
     public CameraShakeConfig cameraShakeOnShootSuccess;
@@ -69,6 +71,8 @@ public class Player : MonoBehaviour
 
         Energy = EnergyMax;
 
+        fovColorFlickDefaultValue = fovColor.GetVector("FlickerMinMax");
+
 
     }
 
@@ -78,7 +82,7 @@ public class Player : MonoBehaviour
         fov = Mathf.Lerp(FOVMinMax.x, FOVMinMax.y, Energy / EnergyMax);
         viewDistance = Mathf.Lerp(DistanceMinMax.x, DistanceMinMax.y, Energy / EnergyMax);
 
-        if(Energy >= EnergyMax)
+        if (Energy >= EnergyMax)
         {
             Energy = EnergyMax;
         }
@@ -98,6 +102,10 @@ public class Player : MonoBehaviour
 
         Energy += isCharging ? chargeAmount : 0;
 
+        if (isCharging)
+            fovColor.SetVector("FlickerMinMax", new Vector2(0.5f,0.5f));
+        else
+            fovColor.SetVector("FlickerMinMax", fovColorFlickDefaultValue);
         lastPos = transform.position = CalculateMovements();
 
         if (projectileCD >= 0)
@@ -112,7 +120,7 @@ public class Player : MonoBehaviour
 
             CameraShake.Instance.OnStartShakeCamera(cameraShakeOverheatSmash.duration, cameraShakeOverheatSmash.magnitude, cameraShakeOverheatSmash.minRange, cameraShakeOverheatSmash.maxRange, cameraShakeOverheatSmash.shakeType);
 
-            if(overHeatSmashValue <= 0)
+            if (overHeatSmashValue <= 0)
             {
                 isOverheated = false;
                 overHeatValue = 0;
@@ -135,7 +143,7 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             GameStateManager.Instance.GameOver(true);
-        } 
+        }
     }
 
     public GameObject thunder;
