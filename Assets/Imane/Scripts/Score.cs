@@ -13,7 +13,7 @@ public class Score : MonoBehaviour
 
 
     public TextMeshProUGUI textPro;
-    private int _currentScore;
+
 
     public static Score instance;
     private void Awake()
@@ -26,8 +26,8 @@ public class Score : MonoBehaviour
     void Start()
     {
         textPro = GetComponent<TextMeshProUGUI>();
-        _currentScore = 0;
-        textPro.text = _currentScore.ToString();
+
+        textPro.text = GameStateManager.Instance.currentScore.ToString();
     }
 
     // Update is called once per frame
@@ -40,8 +40,8 @@ public class Score : MonoBehaviour
         if (!_isPlaying)
             StartCoroutine(PlayAnimation());
 
-        _currentScore += score;
-        textPro.text = _currentScore.ToString();
+        GameStateManager.Instance.currentScore += score;
+        textPro.text = GameStateManager.Instance.currentScore.ToString();
     }
 
     IEnumerator PlayAnimation()

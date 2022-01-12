@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3875816897013467812}
   - component: {fileID: 2063145114646900972}
   - component: {fileID: 750274545089146984}
+  - component: {fileID: 7084827603156369782}
   m_Layer: 3
   m_Name: Alien
   m_TagString: Enemy
@@ -162,6 +163,25 @@ MonoBehaviour:
   onShootParticles: {fileID: 1002479334081251816}
   onDeathParticles: {fileID: 4926886906787177913}
   isDead: 0
+--- !u!95 &7084827603156369782
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318868317945733371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c6daf7737cca1f4092caac6e5ddfd1c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1274281432262383318
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameStateManager : MonoBehaviour
 {
     private static GameStateManager _instance;
+    public int currentScore;
     public static GameStateManager Instance
     {
         get
@@ -23,6 +24,7 @@ public class GameStateManager : MonoBehaviour
     [HideInInspector] public AudioSource[] audioSources;
 
     public GameObject OnDisableGameOver;
+    public GameObject OnDisableGameOverUI;
     public GameObject OnGameOver;
 
     void Awake()
@@ -100,6 +102,7 @@ public class GameStateManager : MonoBehaviour
     public IEnumerator GameOver(bool value)
     {
         OnDisableGameOver.SetActive(false);
+        OnDisableGameOverUI.SetActive(false);
         OnGameOver.SetActive(true);
         Time.timeScale = 1f;
         isGameOver = value;

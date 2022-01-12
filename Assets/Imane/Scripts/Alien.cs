@@ -8,7 +8,7 @@ public class Alien : Enemy
     void Start()
     {
         player = FindObjectOfType<Player>();
-
+        anim = GetComponent<Animator>();
         projectileCD = Random.Range(3, projectileCDDurMinMax.y);
     }
 

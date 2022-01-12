@@ -27,13 +27,14 @@ public class Enemy : MonoBehaviour
     public ParticleSystem onShootParticles;
     public ParticleSystem onDeathParticles;
 
+    public Animator anim;
+
     public bool isDead = false;
 
     void Start()
     {
         //   player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         sprite = GetComponent<SpriteRenderer>().sprite;
-
         //spriteRenderer = GetComponent<SpriteRenderer>();
         //spriteRenderer.sprite = sprite;
     }
@@ -89,6 +90,7 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
+            anim.SetTrigger("death");
             Score.instance.SetScore(score);
             EnemySpawnerManager.Instance.totalEnemies--;
            StartCoroutine(OnDestroyed());

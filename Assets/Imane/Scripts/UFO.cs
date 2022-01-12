@@ -20,6 +20,7 @@ public class UFO : Enemy
     void Start()
     {
         player = FindObjectOfType<Player>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
