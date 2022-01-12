@@ -64,6 +64,9 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         ClearAudios();
+
+        if (stopAllAudios)
+            StartCoroutine(StopAllAudios());
     }
 
     /******************Pour les GameObjects ayant des audiosources*******************/
@@ -106,7 +109,7 @@ public class AudioManager : MonoBehaviour
                 if (audioAction == AudioAction.START)
                 {
                     // Stop tous le audios d'un même type sauf l'audio à jouer s'il était déjà en cours de lecture
-                    StopAllAudiosByAudioType(audioType, name);
+                    //StopAllAudiosByAudioType(audioType, name);
                     if (!audio.source.isPlaying)
                         audio.source.Play();
                     break;
@@ -152,7 +155,7 @@ public class AudioManager : MonoBehaviour
         switch (audioType)
         {
             case Audio.AudioType.SFX:
-                audioSource.pitch = UnityEngine.Random.Range(audio.pitch - 0.5f, audio.pitch + 0.5f);
+                audioSource.pitch = Mathf.Clamp(UnityEngine.Random.Range(audio.pitch - 0.5f, audio.pitch + 0.5f), 0.5f, 3f);
                 break;
             case Audio.AudioType.BACKGROUND:
                 audioSource.pitch = audio.pitch;
@@ -181,8 +184,6 @@ public class AudioManager : MonoBehaviour
     // Stop absolument tous les audios en cours
     public IEnumerator StopAllAudios()
     {
-        stopAllAudios = true;
-
         foreach (Audio audio in audios)
             if (audio.source.isPlaying)
                 audio.source.Stop();
@@ -191,8 +192,6 @@ public class AudioManager : MonoBehaviour
             Destroy(audio.gameObject);
 
         yield return new WaitForEndOfFrame();
-
-        stopAllAudios = false;
     }
 
     // Stop absolument tous les audios en cours sauf pour l'exception spécifiée

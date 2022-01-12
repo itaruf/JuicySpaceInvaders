@@ -16,6 +16,7 @@ public class CameraShake : MonoBehaviour
     private float xOffset;
     private float yOffset;
     Vector3 originalPos;
+    public bool stopShake = false;
 
     private static CameraShake _instance;
     public static CameraShake Instance
@@ -40,7 +41,8 @@ void Start()
 
     void Update()
     {
-
+        if (stopShake)
+            StopAllCoroutines();
     }
 
     public IEnumerator ShakeCamera(float duration, float magnitude, float minRandomOffset, float maxRandomOffset, ShakeType shakeType) 
@@ -104,7 +106,8 @@ void Start()
 
     public void OnStartShakeCamera(float duration, float magnitude, float minRandomOffset, float maxRandomOffset, ShakeType shakeType)
     {
-        StartCoroutine(ShakeCamera(duration, magnitude, minRandomOffset, maxRandomOffset, shakeType));
+        if (!stopShake)
+            StartCoroutine(ShakeCamera(duration, magnitude, minRandomOffset, maxRandomOffset, shakeType));
     }
 }
 

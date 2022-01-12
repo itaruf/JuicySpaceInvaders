@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public ParticleSystem onShootParticles;
     public ParticleSystem onDeathParticles;
     public ParticleSystem onMoveParticles;
+    public ParticleSystem onHitParticles;
     public bool isDead = false;
     private Vector3 lastPos;
 
@@ -150,6 +151,8 @@ public class Player : MonoBehaviour
 
     public void TakeDmg(int dmg)
     {
+        ParticlesManager.Instance.PlayParticles(onHitParticles);
+
         switch (UnityEngine.Random.Range(0, 3))
         {
             case 0:
@@ -197,7 +200,7 @@ public class Player : MonoBehaviour
         Vector3 playerPos = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y);
 
         if (playerPos != lastPos)
-            onMoveParticles.Play();
+            ParticlesManager.Instance.PlayParticles(onMoveParticles);
 
         playerPos.x = Mathf.Clamp(playerPos.x, Camera.main.ViewportToWorldPoint(Vector3.zero).x + (GetComponent<BoxCollider2D>().bounds.size.x / 2), Camera.main.ViewportToWorldPoint(Vector3.one).x - (GetComponent<BoxCollider2D>().bounds.size.x / 2));
 
@@ -221,12 +224,13 @@ public class Player : MonoBehaviour
             AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
             anim.SetTrigger("shoot");
 
-            onShootParticles.Play(); // SFX to play when the player is shooting
+            ParticlesManager.Instance.PlayParticles(onShootParticles); // SFX to play when the player is shooting
 
             overHeatValue += overHeatGain;
 
             GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
-            lastProj.GetComponentInChildren<ParticleSystem>().Play();
+            lastProj.transform.parent = ParticlesManager.Instance.particlesParent.transform;
+            //ParticlesManager.Instance.PlayParticles(lastProj.GetComponentInChildren<ParticleSystem>());
 
             projectileCD = projectileCDDuration;
         }
@@ -295,7 +299,6 @@ public class Player : MonoBehaviour
 
             vertexIndex++;
             angle -= angleIncrease;
-
         }
 
 
@@ -315,7 +318,7 @@ public class Player : MonoBehaviour
     public IEnumerator OnDestroyed()
     {
         isDead = true;
-        onDeathParticles.Play();
+        ParticlesManager.Instance.PlayParticles(onDeathParticles);
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);
     }

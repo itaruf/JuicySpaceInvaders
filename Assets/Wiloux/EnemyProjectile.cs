@@ -8,7 +8,7 @@ public class EnemyProjectile : Projectile
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        trailParticles.Play();
+        ParticlesManager.Instance.PlayParticles(trailParticles);
 
         Destroy(gameObject, destroyTime);
         StartCoroutine(OnDestroyed());

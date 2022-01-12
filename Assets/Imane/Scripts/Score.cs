@@ -6,11 +6,11 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+    //public AnimationCurve scaleCurve;
     public AnimationCurve scaleCurve;
-    public Vector3 targetB;
-    public float scaleLerpTime = 2f;
+    private float scaleLerpTime;
     private bool _isPlaying = false;
-
+    public List<Vector2> keyFrames;
 
     public TextMeshProUGUI textPro;
 
@@ -19,6 +19,13 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        foreach(Vector2 keyframe in keyFrames)
+        {
+            scaleCurve.AddKey(keyframe.x, keyframe.y);
+        }
+        if (keyFrames.Count > 0)
+            scaleLerpTime = keyFrames[keyFrames.Count - 1].x;
     }
 
 
@@ -37,7 +44,7 @@ public class Score : MonoBehaviour
 
     public void SetScore(int score)
     {
-        if (!_isPlaying)
+        if (!_isPlaying && scaleCurve.length != 0)
             StartCoroutine(PlayAnimation());
 
         GameStateManager.Instance.currentScore += score;

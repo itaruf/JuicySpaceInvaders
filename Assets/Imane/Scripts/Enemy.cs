@@ -77,12 +77,12 @@ public class Enemy : MonoBehaviour
 
     protected void Shoot()
     {
-        onShootParticles.Play(); // SFX to play when the enemy is shooting
+        ParticlesManager.Instance.PlayParticles(onShootParticles); // SFX to play when the enemy is shooting
 
         AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
 
         GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
-        lastProj.GetComponentInChildren<ParticleSystem>().Play();
+        ParticlesManager.Instance.PlayParticles(lastProj.GetComponentInChildren<ParticleSystem>());
 
         projectileCD = Random.Range(projectileCDDurMinMax.x, projectileCDDurMinMax.y);
     }
@@ -138,7 +138,7 @@ public class Enemy : MonoBehaviour
                 AudioManager.Instance.PlayAudio("AlienDeath", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
                 break;
         }
-        onDeathParticles.Play();
+        ParticlesManager.Instance.PlayParticles(onDeathParticles);
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);
     }
