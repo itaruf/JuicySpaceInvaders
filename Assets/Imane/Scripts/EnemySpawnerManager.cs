@@ -84,7 +84,7 @@ public class EnemySpawnerManager : MonoBehaviour
         enemyWaveConfig.enemyWave = enemyWaveParent; // GameObject Parent qui va permettre de bouger toute la vague
 
         EnemyWave enemyWave = enemyWaveParent.GetComponent<EnemyWave>();
-
+        enemyWaveParent.transform.parent = enemyWaveConfig.parent.transform;
         // Copy-paste data from config
 
         enemyWave.enemyWave = enemyWaveParent;

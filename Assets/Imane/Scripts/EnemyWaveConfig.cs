@@ -18,6 +18,7 @@ public class EnemyWaveConfig
     public float spawnTimer;
     public Vector3 direction;
     [HideInInspector] public GameObject enemyWave;
+    public GameObject parent;
 
     [Header("Walls Colliders")]
     public GameObject leftCollider;
