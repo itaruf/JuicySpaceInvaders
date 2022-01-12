@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            GameStateManager.Instance.GameOver(true);
+            StartCoroutine(GameStateManager.Instance.GameOver(true));
         }
     }
 

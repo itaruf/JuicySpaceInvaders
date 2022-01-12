@@ -20,7 +20,7 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            GameStateManager.Instance.GameOver(true);
+            StartCoroutine(GameStateManager.Instance.GameOver(true));
         }
         /*if (collision.gameObject.CompareTag("Enemy"))
         {

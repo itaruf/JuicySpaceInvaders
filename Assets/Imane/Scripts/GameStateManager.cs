@@ -22,6 +22,9 @@ public class GameStateManager : MonoBehaviour
 
     [HideInInspector] public AudioSource[] audioSources;
 
+    public GameObject OnDisableGameOver;
+    public GameObject OnGameOver;
+
     void Awake()
     {
         if (_instance != null)
@@ -45,7 +48,9 @@ public class GameStateManager : MonoBehaviour
             isWon = true;
         }
 
-        /*TEST AUDIO SOURCES SUR L'AUDIO MANAGER*/
+        AudioFirstLevel();
+
+        /*TEST AUDIO SOURCES SUR L'AUDIO MANAGER*//*
         if (Input.GetKeyDown(KeyCode.T))
             AudioManager.Instance.PlayAudio("BossMain", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
 
@@ -65,9 +70,9 @@ public class GameStateManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
             StartCoroutine(AudioManager.Instance.StopAllAudios());
-        /**/
+        *//**/
 
-        /*TEST AUDIO SOURCES SUR L'OBJET ET NON L'AUDIO MANAGER*/
+        /*TEST AUDIO SOURCES SUR L'OBJET ET NON L'AUDIO MANAGER*//*
         if (Input.GetKeyDown(KeyCode.H))
             // Si on decide de rejouer cette musique, elle sera reset (true)
             AudioManager.Instance.PlayAudio(audioSources[0].clip.name, audioSources, true);
@@ -87,19 +92,30 @@ public class GameStateManager : MonoBehaviour
         if (AudioManager.Instance.stopAllAudios)
             AudioManager.Instance.StopAllAudios(audioSources);
 
-        /**/
+        *//**//*
         if (Input.GetKeyDown(KeyCode.N))
-            SceneManager.LoadScene("imane");
+            SceneManager.LoadScene("imane");*/
     }
 
-    public void GameOver(bool value)
+    public IEnumerator GameOver(bool value)
     {
+        OnDisableGameOver.SetActive(false);
+        OnGameOver.SetActive(true);
         Time.timeScale = 1f;
         isGameOver = value;
+
+        yield return new WaitWhile(() => !Input.anyKey);
+
+        SceneManager.LoadScene("imane 1");
     }
 
     public bool IsGameOver()
     {
         return (isGameOver);
+    }
+
+    public void AudioFirstLevel()
+    {
+        AudioManager.Instance.PlayAudio("RainAmbient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
     }
 }
