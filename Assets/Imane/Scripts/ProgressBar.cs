@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ProgressBar : MonoBehaviour
 {
     public Slider slider;
     public Score score;
+
     void Start()
     {
         slider.value = 0;

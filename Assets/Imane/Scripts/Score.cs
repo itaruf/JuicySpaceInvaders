@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
@@ -10,14 +11,15 @@ public class Score : MonoBehaviour
     public float scaleLerpTime = 2f;
     private bool _isPlaying = false;
 
-    public Text text;
+
+    public TextMeshProUGUI textPro;
     private int _currentScore;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<Text>();
+        textPro = GetComponent<TextMeshProUGUI>();
         _currentScore = 0;
-        text.text = _currentScore.ToString();
+        textPro.text = _currentScore.ToString();
     }
 
     // Update is called once per frame
@@ -31,7 +33,7 @@ public class Score : MonoBehaviour
             StartCoroutine(PlayAnimation());
 
         _currentScore += score;
-        text.text = _currentScore.ToString();
+        textPro.text = _currentScore.ToString();
     }
 
     IEnumerator PlayAnimation()
