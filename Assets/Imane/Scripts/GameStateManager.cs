@@ -50,7 +50,7 @@ public class GameStateManager : MonoBehaviour
             isWon = true;
         }
 
-        AudioFirstLevel();
+        AudioManager.Instance.PlayAudio("RainAmbient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
 
         /*TEST AUDIO SOURCES SUR L'AUDIO MANAGER*//*
         if (Input.GetKeyDown(KeyCode.T))
@@ -117,8 +117,4 @@ public class GameStateManager : MonoBehaviour
         return (isGameOver);
     }
 
-    public void AudioFirstLevel()
-    {
-        AudioManager.Instance.PlayAudio("RainAmbient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
-    }
 }

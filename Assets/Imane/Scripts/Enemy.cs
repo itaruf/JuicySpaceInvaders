@@ -79,6 +79,8 @@ public class Enemy : MonoBehaviour
     {
         onShootParticles.Play(); // SFX to play when the enemy is shooting
 
+        AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+
         GameObject lastProj = Instantiate(projectile, transform.position, Quaternion.identity);
         lastProj.GetComponentInChildren<ParticleSystem>().Play();
 
@@ -88,6 +90,21 @@ public class Enemy : MonoBehaviour
     public void GetDamaged(int amount)
     {
         health -= amount;
+
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0:
+                AudioManager.Instance.PlayAudio("Hit1Mob", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 1:
+                AudioManager.Instance.PlayAudio("Hit2Mob", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 2:
+                AudioManager.Instance.PlayAudio("Hit3Mob", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            default:
+                break;
+        }
         if (health <= 0)
         {
             anim.SetTrigger("death");
@@ -110,10 +127,17 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
 
-        if (UnityEngine.Random.Range(0,9) == 0)
-            AudioManager.Instance.PlayAudio("AlienDeath2", Audio.AudioType.SFX);
-        else
-            AudioManager.Instance.PlayAudio("AlienDeath", Audio.AudioType.SFX);
+        switch (UnityEngine.Random.Range(0, 2)) {
+            case 0:
+                AudioManager.Instance.PlayAudio("AlienDeath", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 1:
+                AudioManager.Instance.PlayAudio("AlienDeath2", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            default:
+                AudioManager.Instance.PlayAudio("AlienDeath", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+        }
         onDeathParticles.Play();
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);

@@ -19,6 +19,7 @@ public class ThunderManager : MonoBehaviour
     public void ForceThunder()
     {
         anim.SetTrigger("Trigger");
+        PlaySoundEffect();
         thunderValue = Random.Range(thunderCooldownMinxMax.x, thunderCooldownMinxMax.y);
     }
 
@@ -33,7 +34,23 @@ public class ThunderManager : MonoBehaviour
         else
         {
             anim.SetTrigger("Trigger");
+            PlaySoundEffect();
             thunderValue = Random.Range(thunderCooldownMinxMax.x, thunderCooldownMinxMax.y);
+        }
+    }
+
+    void PlaySoundEffect()
+    {
+        switch(UnityEngine.Random.Range(0,2))
+        {
+            case 0:
+                AudioManager.Instance.PlayAudio("Thunder1Reverbe", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 1:
+                AudioManager.Instance.PlayAudio("Thunder2Reverbe", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            default:
+                break;
         }
     }
 }

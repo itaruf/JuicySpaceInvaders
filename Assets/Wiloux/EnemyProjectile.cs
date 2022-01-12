@@ -36,6 +36,22 @@ public class EnemyProjectile : Projectile
         }
         else if (other.tag == "BunkerWall") 
         {
+            switch (UnityEngine.Random.Range(0, 3))
+            {
+                case 0:
+                    AudioManager.Instance.PlayAudio("HitWall1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlayAudio("HitWall2", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                    break;
+                case 2:
+                    AudioManager.Instance.PlayAudio("HitWall3", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                    break;
+                case 3:
+                    AudioManager.Instance.PlayAudio("HitWall4", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                    break;
+            }
+
             OnHit();
             Destroy(gameObject);
         }

@@ -18,6 +18,19 @@ public class Bunker : MonoBehaviour
 
     public void TakeDamage()
     {
+        switch(UnityEngine.Random.Range(0,3))
+        {
+            case 0:
+                AudioManager.Instance.PlayAudio("HitBarricade1", Audio.AudioType.SFX, AudioManager.AudioAction.START);
+                break;
+            case 1:
+                AudioManager.Instance.PlayAudio("HitBarricade2", Audio.AudioType.SFX, AudioManager.AudioAction.START);
+                break;
+            case 2:
+                AudioManager.Instance.PlayAudio("HitBarricade3", Audio.AudioType.SFX, AudioManager.AudioAction.START);
+                break;
+        }
+
         health--;
         if (health > 0)
         {

@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public ParticleSystem onDeathParticles;
     public ParticleSystem onMoveParticles;
     public bool isDead = false;
-    public Rigidbody2D rb;
     private Vector3 lastPos;
 
     [Header("Overheat")]
@@ -138,6 +137,19 @@ public class Player : MonoBehaviour
 
     public void TakeDmg(int dmg)
     {
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0:
+                AudioManager.Instance.PlayAudio("PlayerHurt1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 1:
+                AudioManager.Instance.PlayAudio("PlayerHurt2", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 2:
+                AudioManager.Instance.PlayAudio("PlayerHurt3", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+        }
+
         health -= dmg;
 
         StartCoroutine(StopTime());
@@ -190,6 +202,8 @@ public class Player : MonoBehaviour
         if (projectileCD <= 0)
         {
             CameraShake.Instance.OnStartShakeCamera(cameraShakeOnShootSuccess.duration, cameraShakeOnShootSuccess.magnitude, cameraShakeOnShootSuccess.minRange, cameraShakeOnShootSuccess.maxRange, cameraShakeOnShootSuccess.shakeType);
+
+            AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
 
             onShootParticles.Play(); // SFX to play when the player is shooting
 
