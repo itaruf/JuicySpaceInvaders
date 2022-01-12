@@ -24,5 +24,10 @@ public class JuicinessManager : MonoBehaviour
             else
                 ParticlesManager.Instance.EnableAllStoppedParticles();
         }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            RetroEffectManager.instance.StartStopAllRetroEffects();
+        }
     }
 }
