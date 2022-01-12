@@ -12,6 +12,7 @@ public class EnemySpawnerManager : MonoBehaviour
     [HideInInspector] public int totalEnemies;
     private float timer;
     public float offset;
+    public GameObject parent;
 
     [Header("Alien")]
     public EnemyWaveConfig[] enemyWaveConfigs;
@@ -84,7 +85,7 @@ public class EnemySpawnerManager : MonoBehaviour
         enemyWaveConfig.enemyWave = enemyWaveParent; // GameObject Parent qui va permettre de bouger toute la vague
 
         EnemyWave enemyWave = enemyWaveParent.GetComponent<EnemyWave>();
-        enemyWaveParent.transform.parent = enemyWaveConfig.parent.transform;
+        enemyWaveParent.transform.parent = parent.transform;
         // Copy-paste data from config
 
         enemyWave.enemyWave = enemyWaveParent;
@@ -190,6 +191,7 @@ public class EnemySpawnerManager : MonoBehaviour
         UFO.leftCollider = UFOConfig.leftCollider; 
         UFO.rightCollider = UFOConfig.rightCollider;
 
+        UFO.transform.parent = parent.transform;
         UFO.transform.position = UFO.spawnPosition;
         UFO.transform.localScale = ufoModel.transform.localScale;
         UFO.transform.rotation = ufoModel.transform.rotation;
