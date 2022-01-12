@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private float overHeatValue;
     public int overHeatSmashAmount;
     public int overHeatSmashValue;
+    public GameObject overHeatPopUp;
 
     [Header("Energy")]
     public Vector2 FOVMinMax;
@@ -99,11 +100,12 @@ public class Player : MonoBehaviour
 
         UpdateFOV();
 
+        overHeatPopUp.SetActive(isOverheated);
 
         Energy += isCharging ? chargeAmount : 0;
 
         if (isCharging)
-            fovColor.SetVector("FlickerMinMax", new Vector2(0.5f,0.5f));
+            fovColor.SetVector("FlickerMinMax", new Vector2(0.5f, 0.5f));
         else
             fovColor.SetVector("FlickerMinMax", fovColorFlickDefaultValue);
         lastPos = transform.position = CalculateMovements();
