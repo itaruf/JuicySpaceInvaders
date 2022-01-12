@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2063145114646900972}
   health: 2
+  score: 50
   isSeen: 0
   player: {fileID: 0}
   ghostSprite: {fileID: 21300000, guid: 6e223c699c503094cb5041561800abd0, type: 3}

@@ -14,6 +14,14 @@ public class Score : MonoBehaviour
 
     public TextMeshProUGUI textPro;
     private int _currentScore;
+
+    public static Score instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {

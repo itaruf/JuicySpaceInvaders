@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     //public Sprite sprite;
     public SpriteRenderer spriteRenderer;
     public int health;
+    public int score;
 
     public bool isSeen;
 
@@ -88,7 +89,8 @@ public class Enemy : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
-           EnemySpawnerManager.Instance.totalEnemies--;
+            Score.instance.SetScore(score);
+            EnemySpawnerManager.Instance.totalEnemies--;
            StartCoroutine(OnDestroyed());
         }
     }
