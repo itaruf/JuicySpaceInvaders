@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 8469471042749034070}
   - component: {fileID: 8469471042749034071}
   - component: {fileID: 8469471042749034068}
+  - component: {fileID: 5881198525874829770}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -228,7 +229,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.3}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -257,13 +258,13 @@ MonoBehaviour:
   onDeathParticles: {fileID: 6192724089161036655, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
   onMoveParticles: {fileID: 8038344524183138615, guid: 0277167a12290af47801444830a2be97, type: 3}
   isDead: 0
-  rb: {fileID: 0}
   slider: {fileID: 0}
   overHeatGain: 75
   overHeatLoss: 0.5
   overHeatMax: 200
   overHeatSmashAmount: 3
   overHeatSmashValue: 0
+  overHeatPopUp: {fileID: 0}
   FOVMinMax: {x: 0, y: 120}
   DistanceMinMax: {x: 0, y: 15}
   EnergyMax: 50
@@ -278,6 +279,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+  fovColor: {fileID: 0}
   cameraShakeOnShootSuccess:
     duration: 0.1
     magnitude: 10
@@ -291,6 +293,25 @@ MonoBehaviour:
     maxRange: 0.2
     shakeType: 2
   thunder: {fileID: 0}
+--- !u!95 &5881198525874829770
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8469471042749034069}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a239aed997697ff4e8789dec62c0450a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2402585162379746530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8038344524183138614, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8038344524183138614, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_LocalPosition.z

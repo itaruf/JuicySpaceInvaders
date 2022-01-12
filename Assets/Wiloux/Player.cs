@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
     public Material fovColor;
     private Vector2 fovColorFlickDefaultValue;
 
+    private Animator anim;
+
 
     [Header("Camera Shake On Shoot")]
     public CameraShakeConfig cameraShakeOnShootSuccess;
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
         projectileCD = projectileCDDuration;
         angleIncrease = fov / rayCount;
 
+        anim = GetComponent<Animator>();
         meshFilter = GetComponentInChildren<MeshFilter>();
 
         FieldOfViewInit();
@@ -71,7 +74,7 @@ public class Player : MonoBehaviour
 
         Energy = EnergyMax;
 
-        fovColorFlickDefaultValue = fovColor.GetVector("FlickerMinMax");
+        fovColorFlickDefaultValue = new Vector2(0.1f,0.15f);
 
 
     }
@@ -92,12 +95,18 @@ public class Player : MonoBehaviour
             Energy -= Time.deltaTime;
         }
     }
-
+   
     // Update is called once per frame
     void Update()
     {
 
         UpdateFOV();
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TakeDmg(1);
+        };
 
         overHeatPopUp.SetActive(isOverheated);
 
@@ -107,7 +116,6 @@ public class Player : MonoBehaviour
             fovColor.SetVector("FlickerMinMax", new Vector2(0.5f, 0.5f));
         else
             fovColor.SetVector("FlickerMinMax", fovColorFlickDefaultValue);
-        lastPos = transform.position = CalculateMovements();
 
         if (projectileCD >= 0)
             projectileCD -= Time.deltaTime;
@@ -133,6 +141,11 @@ public class Player : MonoBehaviour
             overHeatValue -= overHeatLoss;
 
         slider.value = overHeatValue / overHeatMax;
+
+        if (isDead)
+            return;
+        lastPos = transform.position = CalculateMovements();
+
     }
 
     public void TakeDmg(int dmg)
@@ -156,6 +169,8 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
+            anim.SetTrigger("death");
+
             StartCoroutine(GameStateManager.Instance.GameOver(true));
         }
     }
@@ -204,6 +219,7 @@ public class Player : MonoBehaviour
             CameraShake.Instance.OnStartShakeCamera(cameraShakeOnShootSuccess.duration, cameraShakeOnShootSuccess.magnitude, cameraShakeOnShootSuccess.minRange, cameraShakeOnShootSuccess.maxRange, cameraShakeOnShootSuccess.shakeType);
 
             AudioManager.Instance.PlayAudio("Laser1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+            anim.SetTrigger("shoot");
 
             onShootParticles.Play(); // SFX to play when the player is shooting
 

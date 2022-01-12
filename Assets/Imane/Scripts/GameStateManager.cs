@@ -40,7 +40,6 @@ public class GameStateManager : MonoBehaviour
         }
 
         audioSources = GetComponents<AudioSource>();
-        AudioManager.Instance.PlayAudio("Ambient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
     }
 
     void Update()
@@ -50,6 +49,7 @@ public class GameStateManager : MonoBehaviour
             isWon = true;
         }
 
+        AudioManager.Instance.PlayAudio("Ambient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
         AudioManager.Instance.PlayAudio("RainAmbient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
 
         /*TEST AUDIO SOURCES SUR L'AUDIO MANAGER*//*
@@ -101,6 +101,7 @@ public class GameStateManager : MonoBehaviour
 
     public IEnumerator GameOver(bool value)
     {
+        yield return new WaitForSeconds(1f);
         OnDisableGameOver.SetActive(false);
         OnDisableGameOverUI.SetActive(false);
         OnGameOver.SetActive(true);
