@@ -5020,7 +5020,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 758
   projectileCD: 0
-  projectileCDDurMinMax: {x: 5, y: 15}
+  projectileCDDurMinMax: {x: 3, y: 7}
   projectile: {fileID: 4198526051925206524, guid: b88b5a069b676ac4eb87c17a0447a1b3, type: 3}
   onShootParticles: {fileID: 9205796999728792867}
   onDeathParticles: {fileID: 3342011782052367323}
