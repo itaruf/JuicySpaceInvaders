@@ -29,5 +29,10 @@ public class JuicinessManager : MonoBehaviour
         {
             RetroEffectManager.instance.StartStopAllRetroEffects();
         }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            AnimatorManager.Instance.StartStopAnim();
+        }
     }
 }

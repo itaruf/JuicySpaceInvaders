@@ -27,7 +27,10 @@ public class UFO : Enemy
     // Update is called once per frame
     void Update()
     {
-    //    SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
+        if (anim != null)
+            anim.enabled = AnimatorManager.Instance.isAnimating ? true : false;
+
+        //    SetSprite(CheckIfSeen(player.transform) ? sprite : ghostSprite);
         if (!GameStateManager.Instance.isGameOver)
             MoveHorizontally();
     }

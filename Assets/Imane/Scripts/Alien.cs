@@ -15,6 +15,9 @@ public class Alien : Enemy
     // Update is called once per frame
     void Update()
     {
+        if (anim != null)
+            anim.enabled = AnimatorManager.Instance.isAnimating ? true : false;
+
         if (!isDead)
         {
             if (CheckIfObstruction())

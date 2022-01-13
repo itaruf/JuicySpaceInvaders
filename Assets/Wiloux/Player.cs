@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
         Energy = EnergyMax;
 
-        fovColorFlickDefaultValue = new Vector2(0.1f,0.15f);
+        fovColorFlickDefaultValue = new Vector2(0.1f, 0.15f);
 
         cameraGlitch.SetFloat("StaticAmount", 0f);
     }
@@ -97,12 +97,15 @@ public class Player : MonoBehaviour
             Energy -= Time.deltaTime;
         }
     }
-   
+
     // Update is called once per frame
     void Update()
     {
 
         UpdateFOV();
+
+        if (anim != null)
+            anim.enabled = AnimatorManager.Instance.isAnimating ? true : false;
 
         cameraGlitch.SetFloat("UnscaledTime", Time.unscaledTime);
 
@@ -197,11 +200,11 @@ public class Player : MonoBehaviour
     IEnumerator StopTime()
     {
         Time.timeScale = 0;
-        cameraGlitch.SetFloat("StaticAmount",0.5f);
+        cameraGlitch.SetFloat("StaticAmount", 0.5f);
         FindObjectOfType<ThunderManager>().ForceThunder();
         yield return new WaitForSecondsRealtime(2f);
         thunder.SetActive(false);
-        cameraGlitch.SetFloat("StaticAmount",0f);
+        cameraGlitch.SetFloat("StaticAmount", 0f);
         Time.timeScale = 1;
     }
 

@@ -111,7 +111,7 @@ public class GameStateManager : MonoBehaviour
 
         yield return new WaitWhile(() => !Input.anyKey);
 
-        SceneManager.LoadScene("imane 2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public IEnumerator Victory(bool value)
@@ -125,7 +125,7 @@ public class GameStateManager : MonoBehaviour
 
         yield return new WaitWhile(() => !Input.anyKey);
 
-        SceneManager.LoadScene("imane 2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public bool IsGameOver()
