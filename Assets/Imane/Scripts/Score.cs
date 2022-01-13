@@ -54,6 +54,8 @@ public class Score : MonoBehaviour
     IEnumerator PlayAnimation()
     {
         _isPlaying = true;
+        textPro.color = Color.Lerp(Color.white, Color.red, 1f);
+
         float i = 0;
         float rate = 1 / scaleLerpTime;
         while (i < scaleLerpTime)
@@ -62,6 +64,7 @@ public class Score : MonoBehaviour
             transform.localScale = new Vector3(scaleCurve.Evaluate(i), scaleCurve.Evaluate(i), scaleCurve.Evaluate(i));
             yield return 0;
         }
+        textPro.color = Color.Lerp(Color.red, Color.white, 1f);
         _isPlaying = false;
     }
 }

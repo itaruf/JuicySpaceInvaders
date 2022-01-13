@@ -155,7 +155,7 @@ public class AudioManager : MonoBehaviour
         switch (audioType)
         {
             case Audio.AudioType.SFX:
-                audioSource.pitch = Mathf.Clamp(UnityEngine.Random.Range(audio.pitch - 0.5f, audio.pitch + 0.5f), 0.5f, 3f);
+                audioSource.pitch = Mathf.Clamp(UnityEngine.Random.Range(audio.pitch, audio.pitch + 0.5f), 1f, 3f);
                 break;
             case Audio.AudioType.BACKGROUND:
                 audioSource.pitch = audio.pitch;
@@ -272,5 +272,17 @@ public class AudioManager : MonoBehaviour
                 listOfAudios.RemoveAt(i);
                 i--;
             }
+    }
+
+    public AudioSource GetAudioSource(string name)
+    {
+        foreach (AudioSource audioSource in GetComponents<AudioSource>())
+        {
+            if (audioSource.clip.name == name)
+            {
+                return audioSource;
+            }
+        }
+        return null;
     }
 }

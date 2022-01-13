@@ -266,6 +266,12 @@ MonoBehaviour:
   onDeathParticles: {fileID: 5553116744451192444}
   anim: {fileID: 0}
   isDead: 0
+  cameraShakeDeath:
+    duration: 1
+    magnitude: 10
+    minRange: -0.2
+    maxRange: 0.2
+    shakeType: 2
   spawnTimer: 0
   direction: {x: 0, y: 0, z: 0}
   spawnPosition: {x: 0, y: 0, z: 0}

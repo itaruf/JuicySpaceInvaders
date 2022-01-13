@@ -59,7 +59,7 @@ public class ParticlesManager : MonoBehaviour
     public void EnableAllStoppedParticles()
     {
         foreach (ParticleSystem particleSystem in particlesParent.GetComponentsInChildren<ParticleSystem>())
-            if (!particleSystem.isPlaying)
+            //if (!particleSystem.isPlaying)
                 particleSystem.Play();
     }
 }

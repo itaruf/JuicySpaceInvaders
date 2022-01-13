@@ -123,16 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1335228002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8354977461727126079, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-  m_PrefabInstance: {fileID: 2001379178}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1798786883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8354977462990521589, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-  m_PrefabInstance: {fileID: 2001379178}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2001379178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,26 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-      propertyPath: enemyWaveConfigs.Array.data[0].leftCollider
-      value: 
-      objectReference: {fileID: 1335228002}
-    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-      propertyPath: enemyWaveConfigs.Array.data[0].movementSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-      propertyPath: enemyWaveConfigs.Array.data[0].rightCollider
-      value: 
-      objectReference: {fileID: 1798786883}
-    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-      propertyPath: enemyWaveConfigs.Array.data[0].yAliensSpawnPos
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
-      propertyPath: enemyWaveConfigs.Array.data[0].numberOfEnemiesPerWave
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3918169993348302128, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

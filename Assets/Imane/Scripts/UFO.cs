@@ -21,6 +21,7 @@ public class UFO : Enemy
     {
         player = FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
+        AudioManager.Instance.PlayAudio("Creepy4", Audio.AudioType.SFX,  AudioManager.AudioAction.START, false);
     }
 
     // Update is called once per frame
@@ -43,5 +44,4 @@ public class UFO : Enemy
     {
         transform.position += direction * movementSpeed * Time.deltaTime;
     }
-
 }

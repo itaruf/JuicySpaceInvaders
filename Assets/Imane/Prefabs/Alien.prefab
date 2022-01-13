@@ -5026,6 +5026,12 @@ MonoBehaviour:
   onDeathParticles: {fileID: 3342011782052367323}
   anim: {fileID: 0}
   isDead: 0
+  cameraShakeDeath:
+    duration: 1
+    magnitude: 10
+    minRange: -0.2
+    maxRange: 0.2
+    shakeType: 2
 --- !u!95 &7084827603156369782
 Animator:
   serializedVersion: 3

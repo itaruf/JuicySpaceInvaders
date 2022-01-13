@@ -31,6 +31,9 @@ public class Enemy : MonoBehaviour
 
     public bool isDead = false;
 
+    [Header("Camera Shake On Shoot")]
+    public CameraShakeConfig cameraShakeDeath;
+
     void Start()
     {
         //   player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -126,7 +129,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator OnDestroyed()
     {
         isDead = true;
-
+        CameraShake.Instance.OnStartShakeCamera(cameraShakeDeath.duration, cameraShakeDeath.magnitude, cameraShakeDeath.minRange, cameraShakeDeath.maxRange, cameraShakeDeath.shakeType);
         switch (UnityEngine.Random.Range(0, 2)) {
             case 0:
                 AudioManager.Instance.PlayAudio("AlienDeath", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
