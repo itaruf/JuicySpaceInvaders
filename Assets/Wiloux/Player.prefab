@@ -282,6 +282,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   fovColor: {fileID: 0}
+  cameraGlitch: {fileID: 0}
+  textHealth: {fileID: 0}
   cameraShakeOnShootSuccess:
     duration: 0.1
     magnitude: 10

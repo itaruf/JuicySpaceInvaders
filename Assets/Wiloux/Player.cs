@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -57,6 +58,8 @@ public class Player : MonoBehaviour
 
     public Material cameraGlitch;
 
+    public TextMeshProUGUI textHealth;
+
     [Header("Camera Shake On Shoot")]
     public CameraShakeConfig cameraShakeOnShootSuccess;
     public CameraShakeConfig cameraShakeOverheatSmash;
@@ -79,6 +82,8 @@ public class Player : MonoBehaviour
         fovColorFlickDefaultValue = new Vector2(0.1f, 0.15f);
 
         cameraGlitch.SetFloat("StaticAmount", 0f);
+
+        textHealth.text = health.ToString();
     }
 
 
@@ -185,6 +190,7 @@ public class Player : MonoBehaviour
         }
 
         health -= dmg;
+        textHealth.text = health.ToString();
 
         StartCoroutine(StopTime());
 
