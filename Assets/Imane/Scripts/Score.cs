@@ -53,6 +53,9 @@ public class Score : MonoBehaviour
 
     IEnumerator PlayAnimation()
     {
+        if (!AnimatorManager.Instance.isAnimating)
+            yield break;
+
         _isPlaying = true;
         textPro.color = Color.Lerp(Color.white, Color.red, 1f);
 

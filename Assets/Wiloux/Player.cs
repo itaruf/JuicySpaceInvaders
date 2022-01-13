@@ -380,6 +380,9 @@ public class Player : MonoBehaviour
 
     IEnumerator PlayAnimation()
     {
+        if (!AnimatorManager.Instance.isAnimating)
+            yield break;
+
         _isPlaying = true;
         textHealth.color = Color.Lerp(Color.white, Color.red, 1f);
 
