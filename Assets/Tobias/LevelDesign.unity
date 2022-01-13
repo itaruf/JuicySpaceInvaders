@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1354614292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8354977461727126079, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+  m_PrefabInstance: {fileID: 2001379178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2001379178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,7 +302,7 @@ PrefabInstance:
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[0].leftCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1354614292}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[10].direction.x
       value: -1
@@ -306,6 +311,42 @@ PrefabInstance:
       propertyPath: enemyWaveConfigs.Array.data[11].direction.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[1].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[2].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[3].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[4].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[5].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[6].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[7].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[8].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[9].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[0].movementSpeed
       value: 1.5
@@ -317,7 +358,15 @@ PrefabInstance:
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[0].rightCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[10].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[11].leftCollider
+      value: 
+      objectReference: {fileID: 1354614292}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[1].movementSpeed
       value: 2
@@ -327,6 +376,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[1].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[2].movementSpeed
       value: 2
       objectReference: {fileID: 0}
@@ -334,6 +387,10 @@ PrefabInstance:
       propertyPath: enemyWaveConfigs.Array.data[2].numberOfWaves
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[2].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[3].movementSpeed
       value: 1
@@ -343,6 +400,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[3].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[4].movementSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -350,6 +411,10 @@ PrefabInstance:
       propertyPath: enemyWaveConfigs.Array.data[4].numberOfWaves
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[4].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[5].movementSpeed
       value: 1
@@ -359,6 +424,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[5].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[6].movementSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -366,6 +435,10 @@ PrefabInstance:
       propertyPath: enemyWaveConfigs.Array.data[6].numberOfWaves
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[6].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[7].movementSpeed
       value: 1
@@ -375,6 +448,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[7].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[8].movementSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -382,6 +459,10 @@ PrefabInstance:
       propertyPath: enemyWaveConfigs.Array.data[8].numberOfWaves
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[8].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[9].movementSpeed
       value: 1
@@ -391,6 +472,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[9].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[10].movementSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -399,6 +484,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[10].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[11].movementSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -406,6 +495,10 @@ PrefabInstance:
       propertyPath: enemyWaveConfigs.Array.data[11].numberOfWaves
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+      propertyPath: enemyWaveConfigs.Array.data[11].rightCollider
+      value: 
+      objectReference: {fileID: 2116601283}
     - target: {fileID: 2118664700, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
       propertyPath: enemyWaveConfigs.Array.data[1].xAliensSpawnPos
       value: -14
@@ -652,3 +745,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+--- !u!1 &2116601283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8354977462990521589, guid: 1dbb2f685b541c54e894311bc9a6099c, type: 3}
+  m_PrefabInstance: {fileID: 2001379178}
+  m_PrefabAsset: {fileID: 0}
