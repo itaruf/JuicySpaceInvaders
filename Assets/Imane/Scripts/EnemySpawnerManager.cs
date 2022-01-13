@@ -57,8 +57,9 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void Update()
     {
-        if (!GameStateManager.Instance.isGameOver && !GameStateManager.Instance.isWon)
+        if (!GameStateManager.Instance.isGameOver)
         {
+
         }
         else
         {

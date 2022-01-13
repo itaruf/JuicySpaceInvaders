@@ -6436,7 +6436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   isGameOver: 0
-  isWon: 0
   timeScaleIncrease: 0.25
   audioSources: []
   OnDisableGameOver: {fileID: 1106983968}
@@ -14324,6 +14323,10 @@ PrefabInstance:
     - target: {fileID: 8469471042749034064, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
+      propertyPath: health
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8469471042749034068, guid: 987a9942901abae4890a5d8a7c080eeb, type: 3}
       propertyPath: slider

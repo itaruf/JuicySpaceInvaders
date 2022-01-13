@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("death");
             isDead = true;
-            StartCoroutine(GameStateManager.Instance.GameOver(true));
+            GameStateManager.Instance.OnStartGameOver();
         }
     }
 
@@ -357,6 +357,7 @@ public class Player : MonoBehaviour
     public IEnumerator OnDestroyed()
     {
         isDead = true;
+        cameraGlitch.SetFloat("StaticAmount", 0f);
         ParticlesManager.Instance.PlayParticles(onDeathParticles);
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);
