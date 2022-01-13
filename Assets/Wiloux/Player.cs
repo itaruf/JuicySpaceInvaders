@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     private Animator anim;
 
-    public Material cameraGlitch;
+
 
     public TextMeshProUGUI textHealth;
     public AnimationCurve scaleCurve;
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
 
         fovColorFlickDefaultValue = new Vector2(0.1f, 0.15f);
 
-        cameraGlitch.SetFloat("StaticAmount", 0f);
+      
 
         textHealth.text = health.ToString();
 
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
         if (anim != null)
             anim.enabled = AnimatorManager.Instance.isAnimating ? true : false;
 
-        cameraGlitch.SetFloat("UnscaledTime", Time.unscaledTime);
+     
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -205,7 +205,8 @@ public class Player : MonoBehaviour
         if (!_isPlaying && scaleCurve.length != 0)
             StartCoroutine(PlayAnimation());
 
-        StartCoroutine(StopTime());
+
+        RetroEffectManager.instance.StopTimeEffect();
 
         if (health <= 0)
         {
@@ -214,19 +215,6 @@ public class Player : MonoBehaviour
             GameStateManager.Instance.OnStartGameOver();
         }
     }
-
-    public GameObject thunder;
-    IEnumerator StopTime()
-    {
-        Time.timeScale = 0;
-        cameraGlitch.SetFloat("StaticAmount", 0.5f);
-        FindObjectOfType<ThunderManager>().ForceThunder();
-        yield return new WaitForSecondsRealtime(2f);
-        thunder.SetActive(false);
-        cameraGlitch.SetFloat("StaticAmount", 0f);
-        Time.timeScale = 1;
-    }
-
 
 
     private void LateUpdate()
@@ -357,7 +345,6 @@ public class Player : MonoBehaviour
     public IEnumerator OnDestroyed()
     {
         isDead = true;
-        cameraGlitch.SetFloat("StaticAmount", 0f);
         ParticlesManager.Instance.PlayParticles(onDeathParticles);
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);

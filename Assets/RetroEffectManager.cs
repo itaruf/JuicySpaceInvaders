@@ -22,8 +22,14 @@ public class RetroEffectManager : MonoBehaviour
     private void Start()
     {
         renderImgMat = renderImg.material;
+        cameraGlitch.SetFloat("StaticAmount", 0f);
     }
     // Start is called before the first frame updat
+
+    private void Update()
+    {
+        cameraGlitch.SetFloat("UnscaledTime", Time.unscaledTime);
+    }
 
     public void StartStopAllRetroEffects()
     {
@@ -39,4 +45,25 @@ public class RetroEffectManager : MonoBehaviour
             renderImg.material = renderImgMat;
         }
     }
+
+
+    public void StopTimeEffect()
+    {
+    StartCoroutine(StopTime());
+    }
+
+    public GameObject thunder;
+    public Material cameraGlitch;
+    IEnumerator StopTime()
+    {
+        Time.timeScale = 0;
+        cameraGlitch.SetFloat("StaticAmount", 0.5f);
+        FindObjectOfType<ThunderManager>().ForceThunder();
+        yield return new WaitForSecondsRealtime(2f);
+        thunder.SetActive(false);
+        cameraGlitch.SetFloat("StaticAmount", 0f);
+        Time.timeScale = 1;
+    }
+
+
 }

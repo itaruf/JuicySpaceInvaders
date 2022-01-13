@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
     [Header("Camera Shake On Shoot")]
     public CameraShakeConfig cameraShakeDeath;
 
+
     void Start()
     {
         //   player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
