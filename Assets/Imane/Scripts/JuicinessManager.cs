@@ -34,5 +34,10 @@ public class JuicinessManager : MonoBehaviour
         {
             AnimatorManager.Instance.StartStopAnim();
         }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            FontManager.instance.ChangeAllFont();
+        }
     }
 }
