@@ -11979,8 +11979,8 @@ MonoBehaviour:
     spawnTimer: 0
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 2
@@ -11992,8 +11992,8 @@ MonoBehaviour:
     spawnTimer: 0
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 2
     movementSpeed: 2
@@ -12005,8 +12005,8 @@ MonoBehaviour:
     spawnTimer: 0
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12018,8 +12018,8 @@ MonoBehaviour:
     spawnTimer: 0
     direction: {x: -1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12031,8 +12031,8 @@ MonoBehaviour:
     spawnTimer: 0
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12044,8 +12044,8 @@ MonoBehaviour:
     spawnTimer: 2
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 3
     numberOfEnemiesPerWave: 3
     movementSpeed: 1
@@ -12057,8 +12057,8 @@ MonoBehaviour:
     spawnTimer: 20
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12070,8 +12070,8 @@ MonoBehaviour:
     spawnTimer: 1
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12083,8 +12083,8 @@ MonoBehaviour:
     spawnTimer: 1
     direction: {x: 1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12096,8 +12096,8 @@ MonoBehaviour:
     spawnTimer: 1
     direction: {x: -1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 1
     numberOfEnemiesPerWave: 1
     movementSpeed: 1
@@ -12109,8 +12109,8 @@ MonoBehaviour:
     spawnTimer: 1
     direction: {x: -1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   - numberOfWaves: 3
     numberOfEnemiesPerWave: 3
     movementSpeed: 1
@@ -12122,8 +12122,8 @@ MonoBehaviour:
     spawnTimer: 15
     direction: {x: -1, y: 0, z: 0}
     enemyWave: {fileID: 0}
-    leftCollider: {fileID: 0}
-    rightCollider: {fileID: 0}
+    leftCollider: {fileID: 8354977461727126079}
+    rightCollider: {fileID: 8354977462990521589}
   enemyWaveModel: {fileID: 7602837708975359633, guid: f42c9d2a17a97c04497250b08a4865a5, type: 3}
   alienModel: {fileID: 750274545089146984, guid: e24830abdebde0641a45cb6c654e5196, type: 3}
   alienSprites:
@@ -14170,6 +14170,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7359682027527483917, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
   m_PrefabInstance: {fileID: 17445102}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8354977461727126079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8354977461744292561, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
+  m_PrefabInstance: {fileID: 17445102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &357641764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14464,14 +14469,14 @@ PrefabInstance:
       objectReference: {fileID: 5904874078258631714}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 028f46440c9d6b34588fa5a3dab632a7, type: 3}
---- !u!198 &5904874078258631714 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5904874078724025711, guid: 028f46440c9d6b34588fa5a3dab632a7, type: 3}
-  m_PrefabInstance: {fileID: 667253069}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1638695424408824702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1638695423910040115, guid: 028f46440c9d6b34588fa5a3dab632a7, type: 3}
+  m_PrefabInstance: {fileID: 667253069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5904874078258631714 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5904874078724025711, guid: 028f46440c9d6b34588fa5a3dab632a7, type: 3}
   m_PrefabInstance: {fileID: 667253069}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &924985728
@@ -14703,6 +14708,11 @@ PrefabInstance:
 --- !u!4 &7359682028436071465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7359682027527483917, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
+  m_PrefabInstance: {fileID: 1247286820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8354977462990521589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8354977461744292561, guid: 1ca33acfbe8c7a84ab33e7395d826033, type: 3}
   m_PrefabInstance: {fileID: 1247286820}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1310966529
