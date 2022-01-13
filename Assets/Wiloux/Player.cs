@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             anim.SetTrigger("death");
-
+            isDead = true;
             StartCoroutine(GameStateManager.Instance.GameOver(true));
         }
     }
