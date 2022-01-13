@@ -37,7 +37,7 @@ public class JuicinessManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
-            FontManager.instance.ChangeAllFont();
+            FontManager.Instance.ChangeAllFont();
         }
     }
 }

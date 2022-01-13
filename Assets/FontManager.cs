@@ -2,34 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class FontManager : MonoBehaviour
 {
     public TextMeshProUGUI[] allTexts;
-
+    public TMP_FontAsset[] allFonts;
     public TMP_FontAsset pixelFontAsset;
     public TMP_FontAsset normalFontAsset;
-        private bool pixelfont;
+    public bool useDefaultFont = false;
 
-
-    public static FontManager instance;
-
-
+    private static FontManager _instance;
+    public static FontManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                return null;
+            return _instance;
+        }
+    }
     private void Awake()
     {
-        instance = this;
-    }
-    void Start()
-    {
-        FindObjectsOfType<TextMeshProUGUI>().CopyTo(allTexts,2);
-    }
+        _instance = this;
+        allTexts = Resources.FindObjectsOfTypeAll<TextMeshProUGUI>();
+        allFonts = new TMP_FontAsset[allTexts.Length];
 
+        for (int i = 0; i < allTexts.Length; i++)
+            allFonts[i] = allTexts[i].font;
+
+    }
     public void ChangeAllFont()
     {
-        pixelfont = !pixelfont;
-        for (int i = 0; i < allTexts.Length; i++)
+        useDefaultFont = !useDefaultFont;
+
+        if (useDefaultFont)
         {
-            allTexts[i].font = pixelfont ? pixelFontAsset : normalFontAsset;
+            for (int i = 0; i < allTexts.Length; i++)
+            {
+                if (allTexts[i])
+                {
+                    float fontSize = allTexts[i].fontSize;
+                    allTexts[i].font = normalFontAsset;
+                    allTexts[i].fontSize = fontSize * 2.5f;
+                }
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i < allTexts.Length; i++)
+            {
+                if (allTexts[i] && allFonts[i])
+                {
+                    float fontSize = allTexts[i].fontSize;
+                    allTexts[i].font = allFonts[i];
+                    allTexts[i].fontSize = fontSize / 2.5f;
+                }
+            }
         }
     }
 }

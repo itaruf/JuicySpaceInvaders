@@ -833,8 +833,10 @@ MonoBehaviour:
   allTexts:
   - {fileID: 396214601575336350}
   - {fileID: 5592701451849912005}
+  allFonts: []
   pixelFontAsset: {fileID: 11400000, guid: f1e508efc03e22a488e0e74ef560bb75, type: 2}
   normalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  useDefaultFont: 0
 --- !u!1 &798334592
 GameObject:
   m_ObjectHideFlags: 0
@@ -12189,8 +12191,8 @@ MonoBehaviour:
     direction: {x: 1, y: 0, z: 0}
     spawnPosition: {x: -20, y: 6, z: 0}
     movementSpeed: 1
-    UFOMinSpawnTimer: 1
-    UFOMaxSpawnTimer: 1
+    UFOMinSpawnTimer: 5
+    UFOMaxSpawnTimer: 10
     leftCollider: {fileID: 8354977463050834384}
     rightCollider: {fileID: 8354977461557787473}
   ufoModel: {fileID: -4471135503710558092, guid: 0fb284b18397d3f419efe559a9115594, type: 3}
