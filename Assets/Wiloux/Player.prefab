@@ -284,6 +284,13 @@ MonoBehaviour:
   fovColor: {fileID: 0}
   cameraGlitch: {fileID: 0}
   textHealth: {fileID: 0}
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  keyFrames: []
   cameraShakeOnShootSuccess:
     duration: 0.1
     magnitude: 10

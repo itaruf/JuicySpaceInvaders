@@ -59,6 +59,10 @@ public class Player : MonoBehaviour
     public Material cameraGlitch;
 
     public TextMeshProUGUI textHealth;
+    public AnimationCurve scaleCurve;
+    private float scaleLerpTime;
+    private bool _isPlaying = false;
+    public List<Vector2> keyFrames;
 
     [Header("Camera Shake On Shoot")]
     public CameraShakeConfig cameraShakeOnShootSuccess;
@@ -84,6 +88,13 @@ public class Player : MonoBehaviour
         cameraGlitch.SetFloat("StaticAmount", 0f);
 
         textHealth.text = health.ToString();
+
+        foreach (Vector2 keyframe in keyFrames)
+        {
+            scaleCurve.AddKey(keyframe.x, keyframe.y);
+        }
+        if (keyFrames.Count > 0)
+            scaleLerpTime = keyFrames[keyFrames.Count - 1].x;
     }
 
 
@@ -191,6 +202,8 @@ public class Player : MonoBehaviour
 
         health -= dmg;
         textHealth.text = health.ToString();
+        if (!_isPlaying && scaleCurve.length != 0)
+            StartCoroutine(PlayAnimation());
 
         StartCoroutine(StopTime());
 
@@ -363,5 +376,22 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Energy")
             isCharging = false;
+    }
+
+    IEnumerator PlayAnimation()
+    {
+        _isPlaying = true;
+        textHealth.color = Color.Lerp(Color.white, Color.red, 1f);
+
+        float i = 0;
+        float rate = 1 / scaleLerpTime;
+        while (i < scaleLerpTime)
+        {
+            i += rate * Time.deltaTime;
+            textHealth.transform.localScale = new Vector3(scaleCurve.Evaluate(i), scaleCurve.Evaluate(i), scaleCurve.Evaluate(i));
+            yield return 0;
+        }
+        textHealth.color = Color.Lerp(Color.red, Color.white, 1f);
+        _isPlaying = false;
     }
 }
