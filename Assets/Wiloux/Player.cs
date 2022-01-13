@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
     private Animator anim;
 
+    public Material cameraGlitch;
 
     [Header("Camera Shake On Shoot")]
     public CameraShakeConfig cameraShakeOnShootSuccess;
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
 
         fovColorFlickDefaultValue = new Vector2(0.1f,0.15f);
 
-
+        cameraGlitch.SetFloat("StaticAmount", 0f);
     }
 
 
@@ -103,6 +104,7 @@ public class Player : MonoBehaviour
 
         UpdateFOV();
 
+        cameraGlitch.SetFloat("UnscaledTime", Time.unscaledTime);
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -166,6 +168,19 @@ public class Player : MonoBehaviour
                 break;
         }
 
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0:
+                AudioManager.Instance.PlayAudio("Glitch1", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 1:
+                AudioManager.Instance.PlayAudio("Glitch2", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+            case 2:
+                AudioManager.Instance.PlayAudio("Glitch3", Audio.AudioType.SFX, AudioManager.AudioAction.START, false);
+                break;
+        }
+
         health -= dmg;
 
         StartCoroutine(StopTime());
@@ -182,9 +197,11 @@ public class Player : MonoBehaviour
     IEnumerator StopTime()
     {
         Time.timeScale = 0;
+        cameraGlitch.SetFloat("StaticAmount",0.5f);
         FindObjectOfType<ThunderManager>().ForceThunder();
         yield return new WaitForSecondsRealtime(2f);
         thunder.SetActive(false);
+        cameraGlitch.SetFloat("StaticAmount",0f);
         Time.timeScale = 1;
     }
 
