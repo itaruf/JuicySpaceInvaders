@@ -6,6 +6,7 @@ public class JuicinessManager : MonoBehaviour
 {
     void Start()
     {
+        AudioManager.Instance.stopAllAudios = !AudioManager.Instance.stopAllAudios;
         CameraShake.Instance.stopShake = !CameraShake.Instance.stopShake;
         ParticlesManager.Instance.stopParticles = !ParticlesManager.Instance.stopParticles;
         if (ParticlesManager.Instance.stopParticles)
