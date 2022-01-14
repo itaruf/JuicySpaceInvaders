@@ -6,7 +6,20 @@ public class JuicinessManager : MonoBehaviour
 {
     void Start()
     {
-        
+        CameraShake.Instance.stopShake = !CameraShake.Instance.stopShake;
+        ParticlesManager.Instance.stopParticles = !ParticlesManager.Instance.stopParticles;
+        if (ParticlesManager.Instance.stopParticles)
+            ParticlesManager.Instance.DisableAllActiveParticles();
+        else
+            ParticlesManager.Instance.EnableAllStoppedParticles();
+        RetroEffectManager.instance.StartStopAllRetroEffects();
+        AnimatorManager.Instance.StartStopAnim();
+        FontManager.Instance.ChangeAllFont();
+    }
+
+    private void Awake()
+    {
+
     }
 
     void Update()
