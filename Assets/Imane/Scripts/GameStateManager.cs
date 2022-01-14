@@ -21,8 +21,6 @@ public class GameStateManager : MonoBehaviour
     public float timeScaleIncrease = 1f;
     private bool isReadyToRestart = false;
 
-    [HideInInspector] public AudioSource[] audioSources;
-
     public GameObject OnDisableGameOver;
     public GameObject OnDisableGameOverUI;
     public GameObject OnGameOver;
@@ -39,25 +37,38 @@ public class GameStateManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        audioSources = GetComponents<AudioSource>();
+
+        Cursor.visible = false;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        if (EnemySpawnerManager.Instance.totalEnemies == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            StartCoroutine(Victory(true));
+            if (!AudioManager.Instance.stopAllAudios)
+                AudioManager.Instance.PlayAudio("RainAmbient", Audio.AudioType.BACKGROUND, AudioManager.AudioAction.START);
         }
 
-        if (!AudioManager.Instance.stopAllAudios)
-            AudioFirstLevel();
+        else
+        {
+            if (EnemySpawnerManager.Instance.totalEnemies == 0)
+            {
+                StartCoroutine(Victory(true));
+            }
 
-        if (isReadyToRestart)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (!AudioManager.Instance.stopAllAudios)
+                AudioFirstLevel();
+
+            if (isReadyToRestart)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public IEnumerator GameOver(bool value)
     {
+        GetComponent<PauseMenu>().holdPauseMenu = true;
         isGameOver = true;
         Time.timeScale = 1f;
 
@@ -73,10 +84,12 @@ public class GameStateManager : MonoBehaviour
   
         isReadyToRestart = true;
         isGameOver = false;
+        GetComponent<PauseMenu>().holdPauseMenu = false;
     }
 
     public IEnumerator Victory(bool value)
     {
+        GetComponent<PauseMenu>().holdPauseMenu = true;
         isGameOver = true;
         Time.timeScale = 1f;
 
@@ -92,6 +105,7 @@ public class GameStateManager : MonoBehaviour
 
         isReadyToRestart = true;
         isGameOver = false;
+        GetComponent<PauseMenu>().holdPauseMenu = false;
     }
 
     public bool IsGameOver()

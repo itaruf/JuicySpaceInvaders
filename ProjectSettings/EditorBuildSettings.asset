@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Imane/Scenes/MainMenu.unity
+    guid: 4318931813b06f042ac5918ff0afac60
+  - enabled: 1
+    path: Assets/Imane/Scenes/imane 2.unity
+    guid: 3c19bde057a18de43aa1c53e7edf1182
+  - enabled: 1
     path: Assets/Wiloux/imane 1.unity
     guid: 8c8339ba360f56f449f5527f4a2b3fea
   m_configObjects: {}
