@@ -105,14 +105,16 @@ can reach the barricade. </li>
       <li>From SFX / VFX triggering on the characters attacks and hits, glitching animation played specifically for the player when hit, to spawning new waves of enemies when the previous one has been destroyed, these events allow for a dynamic and immersive environment.</li> 
     </ul>
   </li>
-    
-<br>
-  <div align="center"> 
-    <img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDNnMHlyMXdta25va2pidXRlc2QyYWI2a25jOWRsZXYxanc1NmRociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rK4SeEKCb5ZskjGbCC/giphy.gif" style="display: block; margin: auto;" width="500" />
-  </div>
-</div>
 
-</ol>
+  <br>
+    <div align="center"> 
+      <img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDNnMHlyMXdta25va2pidXRlc2QyYWI2a25jOWRsZXYxanc1NmRociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rK4SeEKCb5ZskjGbCC/giphy.gif" style="display: block; margin: auto;" width="500" />
+    </div>
+  </div>
+  
+  </ol>
+
+</details>
 
 ### :zap: Challenges encountered
 - Since Space Invaders is a classic but basic game, the intent here was to make the game as juicy
