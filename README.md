@@ -4,7 +4,7 @@
 [![Itch.io](https://img.shields.io/badge/download-itch.io-%23e3326d)](https://wiloux.itch.io/juicy-space-invader)
 [![Youtube](https://img.shields.io/badge/demo-youtube-%23db1818)](https://www.youtube.com/watch?v=c2318l2lzzI)
 
-## 🕵️ Creepy Invaders - 2D survival action game
+## 👾 Creepy Invaders - 2D survival action game
 
 - Based on the famous Space Invaders game, but reskined and enhanced to be as creepy and pressuringas possible, play as a survivor that repels waves of enemies within a limited field of vision and a weapon that can be jammed.
 
@@ -102,7 +102,7 @@ can reach the barricade. </li>
   <li><h4>Dynamic events responses</h4></li>
     <ul>
       <li>To maximize the juicyness (theme of the game), different events are triggered by actions in-game.</li> 
-      <li>From SFX / VFX triggering on the characters attacks and hits, glitching animation played specifically for the player when hit, to spawn new waves of enemies when the previous has been destroyed, these events allow for a dynamic and immersive environment.</li> 
+      <li>From SFX / VFX triggering on the characters attacks and hits, glitching animation played specifically for the player when hit, to spawning new waves of enemies when the previous one has been destroyed, these events allow for a dynamic and immersive environment.</li> 
     </ul>
   </li>
     
@@ -114,7 +114,7 @@ can reach the barricade. </li>
 
 </ol>
 
-### :zap: Challenges Encountered
+### :zap: Challenges encountered
 - Since Space Invaders is a classic but basic game, the intent here was to make the game as juicy
 and immersive as possible by focusing on the effects and by adding simple game mechanics
 without loosing the spirit of a Space Invaders game.
